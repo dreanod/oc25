@@ -36,3 +36,15 @@ p {
 .important > strong {
     text-decoration: underline solid;
 }
+
+.guerrier {
+    background-color: red;
+}
+
+.magicien {
+    background-color: blue;
+}
+
+.voleur {
+    background-color: gray;
+}

@@ -1,25 +1,62 @@
-var message = 'Bienvenue';
 
-// console.log(message);
 
-// function ma_fonction() {
-//     console.log('ma fonction');
-// }
+var jean = {
+    nom: 'jean',
+    classe: 'guerrier',
+    niveau: 2,
+    passer_niveau: function() {
+        this.niveau++;
+    }
+};
 
-// ma_fonction();
+console.log(jean);
+console.log(jean.niveau);
+jean.passer_niveau();
+console.log(jean.niveau);
 
-// console.log(document.getElementById('bienvenue').textContent)
+function creer_personnage(nom, classe, niveau) {
+   var nouveau_personnage = {
+        nom: nom,
+        classe: classe,
+        niveau: niveau,
+        passer_niveau: function() {
+            this.niveau++;
+        },
+        creer_li: function() {
+            var li_personnage = document.createElement('li');
+            var texte_personnage = document.createTextNode(
+                this.nom + ' (' + this.classe +', niveau ' + this.niveau + ')'
+            );
+            li_personnage.appendChild(texte_personnage);
+            li_personnage.setAttribute('class', this.classe)
+            return li_personnage;
+        }
+    }
 
-// for (var i = 0; i < 10; i++) {
-//     console.log(i);
-// }
+    return nouveau_personnage;
+};
 
-function ajouter_perso() {
-    var nom_perso = 'Jean';
+var nicole = creer_personnage('Nicole', 'voleur', 3);
 
-    var nouveau_li = document.createElement('li');
-    var nouveau_text = document.createTextNode(text_personnage);
-    
-    console.log('perso');
+console.log(nicole)
+
+
+var troupe = [
+    creer_personnage('Jean', 'guerrier', 2),
+    creer_personnage('Nicole', 'voleur', 3),
+    creer_personnage('Matteo', 'magicien', 1)
+]
+
+console.log(troupe);
+console.log(troupe[0])
+
+for (var i = 0; i < troupe.length; i++) {
+    var perso = troupe[i];
+    li_personnage = perso.creer_li();
+
+    var liste_perso = document.getElementById("liste_de_perso");
+    liste_perso.appendChild(li_personnage);
 }
+
+
 
