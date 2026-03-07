@@ -1,0 +1,10 @@
+.diagram {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.annotation {
+    position: absolute;
+}

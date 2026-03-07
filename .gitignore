@@ -23,3 +23,6 @@
 
 # Trash
 .Trash/
+
+# LibreOffice lock files
+.~lock.*#

@@ -1,0 +1,51 @@
+.exercice {
+    position: relative;
+}
+
+.question {
+    position: relative;
+}
+
+.points {
+    position: absolute;
+    right: -100px;
+    width: 50px;
+    font-style: italic;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.exercice li {
+    margin-bottom: 5px;
+    margin-top: 20px;
+}
+
+div.exercice>.points {
+    top: -17px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+li.question>.points {
+    bottom: -17px;
+    font-weight: normal;
+}
+
+div.correction {
+    font-style: italic;
+    border: 1px solid black;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+div.correction ol {
+    list-style-type: decimal;
+}
+
+div.correction p {
+    margin-top:  0px;
+    margin-bottom: 0px;
+}
+

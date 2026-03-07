@@ -1,0 +1,30 @@
+@media print {
+  /* Format + marges */
+  @page { size: A4; margin: 7mm;  }
+
+  /* Forcer un rendu "document" */
+  html, body, table {
+    font-size: 8pt;
+    line-height: 1.35;
+  }
+
+  h1, h2, h3, h4, h5, h6 { break-after: avoid; }
+
+  /* Sauts de page : très utile pour exos / corrigés */
+  .avoid-break { break-inside: avoid; }
+  .page-break { break-before: page; }
+  .new-page   { break-before: page; }
+
+  /* Éviter les “orphelines/veuves” */
+  p, li { orphans: 3; widows: 3; }
+
+  /* Liens : en général on n’imprime pas toutes les URLs sur des polys */
+  a { color: #000; text-decoration: none; }
+  a[href^="http"]::after { content: ""; }
+
+  /* Ajuster les blocs “encadrés” (définitions, théorèmes, etc.) */
+  .question, .correction {
+    break-inside: avoid;
+  }
+}
+

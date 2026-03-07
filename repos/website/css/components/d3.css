@@ -1,0 +1,15 @@
+.d3 .grid.major line {
+    stroke: #bbb;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.d3 .grid.minor line {
+    stroke: #eee;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+.d3 .grid path {
+    display: none;
+}

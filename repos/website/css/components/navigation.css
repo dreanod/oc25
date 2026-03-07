@@ -1,0 +1,22 @@
+#navigation {
+    /*border: solid 1px green;*/
+    /*background-color: rgb(171, 171, 171);*/
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+#navigation ul {
+    /*border: solid 1px orange;*/
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px;
+}
+
+#navigation li {
+    display: inline;
+    margin-left: 10px;
+    margin-right: 10px;
+    /*border: solid 1px red;*/
+}
+

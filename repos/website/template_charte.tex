@@ -1,0 +1,351 @@
+% ============================================================
+%  ARS TYPOGRAPHICA — Template LaTeX
+%  Charte Graphique Minimaliste, inspiration TAOCP / Knuth
+%  Version 1.0 — Mars 2026
+% ============================================================
+%
+%  Usage :
+%    \documentclass{article}  (ou book, report)
+%    puis \input{template_charte}
+%  ou directement compiler ce fichier comme document autonome.
+%
+%  Dépendances :
+%    lualatex (recommandé) ou pdflatex
+%    Packages : geometry, fontenc, inputenc, microtype,
+%               booktabs, xcolor, listings, hyperref,
+%               titlesec, fancyhdr, parskip, amsmath, amssymb
+% ============================================================
+
+\documentclass[11pt, a4paper, twoside]{article}
+
+% ─── ENCODAGE & LANGUE ───────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}         % remplacer par [english] si besoin
+
+% ─── TYPOGRAPHIE ─────────────────────────────────────────────
+% Computer Modern est la police par défaut de LaTeX.
+% Pour une version vectorielle améliorée, utiliser Latin Modern :
+\usepackage{lmodern}
+
+% Optimisation typographique (crénage, expansion)
+\usepackage{microtype}
+
+% Police monospace : Courier (ou inconsolata pour + de lisibilité)
+% \usepackage{inconsolata}  % décommenter pour Inconsolata
+
+% ─── MISE EN PAGE ────────────────────────────────────────────
+\usepackage[
+  a4paper,
+  top    = 30mm,
+  bottom = 28mm,
+  left   = 28mm,
+  right  = 28mm,
+  headsep= 8mm,
+  footskip = 12mm,
+]{geometry}
+
+% ─── COULEURS ────────────────────────────────────────────────
+\usepackage{xcolor}
+
+\definecolor{ink}{HTML}{111111}         % Noir d'encre — texte principal
+\definecolor{darkgray}{HTML}{333333}    % Gris foncé — texte secondaire
+\definecolor{midgray}{HTML}{666666}     % Gris moyen — légendes, métadonnées
+\definecolor{lightgray}{HTML}{AAAAAA}   % Gris clair — repères, filets légers
+\definecolor{rulegray}{HTML}{CCCCCC}    % Gris séparateur — filets standard
+\definecolor{codebg}{HTML}{F5F5F5}      % Fond de code
+\definecolor{white}{HTML}{FFFFFF}       % Blanc pur
+
+% Couleur par défaut du texte
+\color{ink}
+
+% ─── EN-TÊTES ET PIEDS DE PAGE ───────────────────────────────
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+% En-tête courant
+\fancyhead[LE]{\small\itshape\color{lightgray}\leftmark}
+\fancyhead[RO]{\small\itshape\color{lightgray}\rightmark}
+\fancyhead[LO,RE]{}
+
+% Filets d'en-tête et de pied
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\color{rulegray}\hrule width\headwidth height\headrulewidth}
+\renewcommand{\footrulewidth}{0pt}
+
+% Folio centré (ou extérieur selon la classe)
+\fancyfoot[C]{\small\color{midgray}\thepage}
+
+% Style pour la première page de section
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  \fancyfoot[C]{\small\color{midgray}\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ─── TITRES DE SECTIONS ──────────────────────────────────────
+\usepackage{titlesec}
+
+% H1 : 17pt gras — espace avant 24pt, après 12pt
+\titleformat{\section}
+  {\fontsize{17}{22}\bfseries\color{ink}}
+  {\S\,\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{24pt}{12pt}
+
+% H2 : 13pt gras — espace avant 18pt, après 8pt
+\titleformat{\subsection}
+  {\fontsize{13}{18}\bfseries\color{ink}}
+  {\S\,\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{18pt}{8pt}
+
+% H3 : 11pt gras italique — espace avant 12pt, après 6pt
+\titleformat{\subsubsection}
+  {\fontsize{11}{16}\bfseries\itshape\color{ink}}
+  {\S\,\thesubsubsection}{1em}{}
+\titlespacing*{\subsubsection}{0pt}{12pt}{6pt}
+
+% ─── PARAGRAPHES ─────────────────────────────────────────────
+% Pas d'indentation — espace entre paragraphes
+\usepackage{parskip}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+
+% ─── MATHÉMATIQUES ───────────────────────────────────────────
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+% Environnements théorèmes
+\theoremstyle{definition}
+\newtheorem{definition}{Définition}[section]
+\newtheorem{theorem}{Théorème}[section]
+\newtheorem{lemma}[theorem]{Lemme}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollaire}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remarque}
+\newtheorem*{example}{Exemple}
+
+% ─── TABLEAUX ────────────────────────────────────────────────
+\usepackage{booktabs}       % Filets de tableau professionnels
+\usepackage{array}
+\usepackage{longtable}
+
+% Environnement tableau standard conforme à la charte
+% Usage : \begin{chartable}{lll}{Titre du tableau}{tab:ref}
+\newenvironment{chartable}[3]{%
+  \begin{table}[htbp]
+  \caption{#2}\label{#3}
+  \centering
+  \small
+  \begin{tabular}{#1}
+  \toprule
+}{%
+  \bottomrule
+  \end{tabular}
+  \end{table}
+}
+
+% ─── CODE SOURCE ─────────────────────────────────────────────
+\usepackage{listings}
+
+\lstset{
+  basicstyle    = \small\ttfamily\color{ink},
+  backgroundcolor = \color{codebg},
+  frame         = single,
+  framesep      = 4pt,
+  rulecolor     = \color{rulegray},
+  framerule     = 0.3pt,
+  numbers       = left,
+  numberstyle   = \tiny\color{lightgray},
+  numbersep     = 8pt,
+  stepnumber    = 1,
+  breaklines    = true,
+  breakatwhitespace = true,
+  showstringspaces = false,
+  tabsize       = 4,
+  % Différenciation par style (pas de couleurs)
+  keywordstyle  = \bfseries,
+  commentstyle  = \itshape\color{midgray},
+  stringstyle   = \ttfamily,
+  % Pseudo-code style
+  literate      = {<-}{$\leftarrow$}2 {->}{$\rightarrow$}2
+                  {<=}{$\leq$}2 {>=}{$\geq$}2
+                  {!=}{$\neq$}2,
+}
+
+% Alias pour inline code
+\newcommand{\code}[1]{\texttt{#1}}
+
+% ─── FIGURES & LÉGENDES ──────────────────────────────────────
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\captionsetup{
+  font      = {small, it},
+  labelfont = {small, bf},
+  labelsep  = period,
+  textcolor = midgray,
+}
+
+% ─── LIENS HYPERTEXTE ────────────────────────────────────────
+\usepackage[
+  colorlinks = true,
+  linkcolor  = ink,
+  urlcolor   = darkgray,
+  citecolor  = darkgray,
+  pdftitle   = {Document — Ars Typographica},
+  pdfauthor  = {},
+]{hyperref}
+
+% ─── MACROS UTILITAIRES ──────────────────────────────────────
+% Numéro de section Knuth : \ksec{1.2.3}
+\newcommand{\ksec}[1]{\S\,#1}
+
+% Filet de séparation léger
+\newcommand{\lightrule}{%
+  {\color{rulegray}\rule{\linewidth}{0.4pt}}%
+  \vspace{4pt}%
+}
+
+% Filet d'ouverture (couverture, avant-propos)
+\newcommand{\heavyrule}{%
+  {\color{ink}\rule{\linewidth}{1.2pt}}%
+  \vspace{6pt}%
+}
+
+% Bloc de résumé (abstract style TAOCP)
+\renewenvironment{abstract}{%
+  \small\itshape
+  \noindent\textbf{Résumé.} ---
+}{\par\vspace{6pt}\lightrule\vspace{6pt}}
+
+% Note marginale
+\usepackage{marginnote}
+\newcommand{\marginnote}[1]{%
+  \marginpar{\footnotesize\itshape\color{midgray}#1}%
+}
+
+% ─── PAGE DE TITRE ───────────────────────────────────────────
+% Redéfinition pour respecter la charte
+\renewcommand{\maketitle}{%
+  \begin{center}
+    \heavyrule
+    {\fontsize{22}{28}\bfseries\@title\par}
+    \vspace{4pt}
+    {\large\itshape\@author\par}
+    \vspace{2pt}
+    {\small\color{midgray}\@date\par}
+    \vspace{6pt}
+    \lightrule
+  \end{center}
+  \vspace{8pt}
+}
+
+% ============================================================
+%  DÉBUT DU DOCUMENT EXEMPLE
+% ============================================================
+
+\title{Titre du Document}
+\author{Prénom Nom}
+\date{Mars 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Résumé concis du document en italique. Ce texte donne les grandes lignes
+du contenu et des conclusions, en deux à cinq phrases.
+\end{abstract}
+
+% ─── TABLE DES MATIÈRES ──────────────────────────────────────
+\tableofcontents
+\vspace{12pt}
+\lightrule
+
+% ─── SECTION EXEMPLE ─────────────────────────────────────────
+\section{Introduction}
+
+Texte d'introduction. Le corps du texte est composé en Computer Modern
+11\,pt avec un interlignage de 16\,pt. Les variables mathématiques
+sont en italique : l'algorithme prend en entrée une séquence
+$a_1, a_2, \ldots, a_n$ et retourne une permutation $\sigma$.
+
+\subsection{Contexte et motivations}
+
+Sous-section avec numérotation $\S\,1.1$. Le texte justifié occupe
+toute la largeur de la colonne. Le package \texttt{microtype} assure
+une justification optimale par expansion des glyphes.
+
+\subsubsection{Hypothèses}
+
+Un troisième niveau de titre, en gras italique 11\,pt. Utilisé avec
+parcimonie, uniquement pour les documents très structurés.
+
+\section{Notations et définitions}
+
+\begin{definition}[Complexité asymptotique]
+  On dit que $f(n) = O(g(n))$ s'il existe $c > 0$ et $n_0 \in \mathbb{N}$
+  tels que $f(n) \leq c \cdot g(n)$ pour tout $n \geq n_0$.
+\end{definition}
+
+\begin{theorem}[Borne inférieure du tri]
+  Tout algorithme de tri par comparaison requiert $\Omega(n \log n)$
+  comparaisons dans le pire cas.
+\end{theorem}
+
+\begin{proof}
+  L'arbre de décision d'un algorithme de tri sur $n$ éléments possède
+  au moins $n!$ feuilles, donc une hauteur au moins $\log_2(n!) = \Omega(n \log n)$.
+\end{proof}
+
+\section{Exemple de code}
+
+\begin{lstlisting}[language=Python, caption={Recherche KMP}]
+def kmp_search(text, pattern):
+    """Knuth-Morris-Pratt string matching."""
+    n, m = len(text), len(pattern)
+    lps = compute_lps(pattern)  # Longest proper prefix-suffix
+    i = j = 0
+    while i < n:
+        if pattern[j] == text[i]:
+            i += 1; j += 1
+        if j == m:
+            return i - j  # Match at position i-j
+        elif i < n and pattern[j] != text[i]:
+            j = lps[j - 1] if j != 0 else 0; i += (1 if j == 0 else 0)
+    return -1  # Not found
+\end{lstlisting}
+
+\section{Tableau exemple}
+
+\begin{chartable}{llrr}{Complexités des algorithmes de tri}{tab:complexites}
+  \textbf{Algorithme} & \textbf{Cas moyen} & \textbf{Pire cas} & \textbf{Mémoire} \\
+  \midrule
+  Insertion sort & $O(n^2)$ & $O(n^2)$ & $O(1)$ \\
+  Mergesort      & $O(n \log n)$ & $O(n \log n)$ & $O(n)$ \\
+  Quicksort      & $O(n \log n)$ & $O(n^2)$ & $O(\log n)$ \\
+  Heapsort       & $O(n \log n)$ & $O(n \log n)$ & $O(1)$ \\
+\end{chartable}
+
+% ─── RÉFÉRENCES ──────────────────────────────────────────────
+\begin{thebibliography}{9}
+  \bibitem{knuth1997}
+    Donald E.~Knuth,
+    \textit{The Art of Computer Programming, Vol.~1: Fundamental Algorithms},
+    3\textsuperscript{e} éd., Addison-Wesley, 1997.
+
+  \bibitem{knuth1998}
+    Donald E.~Knuth,
+    \textit{The Art of Computer Programming, Vol.~3: Sorting and Searching},
+    2\textsuperscript{e} éd., Addison-Wesley, 1998.
+\end{thebibliography}
+
+\end{document}
+% ============================================================
+%  FIN DU TEMPLATE — ARS TYPOGRAPHICA v1.0
+% ============================================================
