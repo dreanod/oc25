@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<!--
+  TEMPLATE — PAGE DE COURS
+  ════════════════════════════════════════════════════════════════
+  Usage :
+    1. Copier ce fichier dans le dossier du cours, renommer avec
+       la date et le titre, ex. : 2026-02-03_limites.html
+    2. Remplacer les champs marqués ← par le contenu réel.
+    3. Supprimer les blocs <section> inutilisés.
+
+  Boîtes pédagogiques disponibles (class sur <div class="box …">):
+    .definition   — bleu      — définitions
+    .theorem      — violet    — théorèmes, propositions, corollaires
+    .example      — gris      — exemples
+    .remark       — orange    — remarques, mises en garde
+    .warning      — rouge     — erreurs fréquentes
+
+  Chaque boîte contient un <p class="box-title"> pour le label.
+  ════════════════════════════════════════════════════════════════
+-->
+
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><!-- ← Titre du cours --> — Denis Dréano</title>
+
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/print.css">
+
+  <!-- MathJax (à conserver pour toute page avec des formules) -->
+  <script>
+  MathJax = {
+    tex: {
+      macros: {
+        ts: ["\\text{'}"],
+        R:  ["\\mathbb{R}"],
+        N:  ["\\mathbb{N}"],
+        Z:  ["\\mathbb{Z}"],
+        Q:  ["\\mathbb{Q}"],
+        C:  ["\\mathbb{C}"]
+      }
+    }
+  };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+</head>
+
+<body>
+
+<!-- ── Navigation du site ────────────────────────────────────── -->
+<nav id="site-nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/index.html">Denis Dréano</a>
+    <ul class="nav-links">
+      <li><a href="/index.html">Accueil</a></li>
+      <li><a href="/about.html">À propos</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Contenu principal ─────────────────────────────────────── -->
+<article>
+
+  <!-- ── Fil d'Ariane ─────────────────────────────────────── -->
+  <ol class="breadcrumb">
+    <li><a href="/index.html">Accueil</a></li>
+    <li><a href="../../index.html"><!-- ← Nom de la classe, ex: 3M02 --></a></li>
+    <li><!-- ← Titre court du cours --></li>
+  </ol>
+
+  <!-- ── En-tête du document ──────────────────────────────── -->
+  <table id="doc-header">
+    <tr>
+      <td class="left">Gymnase du Bugnon</td>
+      <td class="right"><!-- ← Classe, ex: 3M02 --></td>
+    </tr>
+    <tr>
+      <td class="left">Denis Dréano</td>
+      <td class="right"><!-- ← Date, ex: 3 février 2026 --></td>
+    </tr>
+  </table>
+
+  <!-- ── Titres ────────────────────────────────────────────── -->
+  <h1><!-- ← Titre du chapitre --></h1>
+  <h2 class="subtitle"><!-- ← Sous-titre ou numéro de chapitre --></h2>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       SECTION 1 — Exemple de section de cours
+       ════════════════════════════════════════════════════════ -->
+  <section>
+    <h3>1. <!-- ← Titre de la section --></h3>
+
+    <p>
+      Texte introductif de la section. On peut écrire des formules
+      en ligne comme \(f(x) = x^2 + 1\) ou en display&nbsp;:
+    </p>
+
+    $$
+      \int_a^b f(x)\,\mathrm{d}x = F(b) - F(a).
+    $$
+
+    <!-- ── Définition ──────────────────────────────────────── -->
+    <div class="box definition">
+      <p class="box-title">Définition <!-- ← numéro --></p>
+      <p>
+        <!-- ← Texte de la définition. -->
+        Soit \(f : \R \to \R\) une fonction. On dit que \(f\) est
+        <strong>continue en \(a\)</strong> si …
+      </p>
+    </div>
+
+    <p>Texte supplémentaire entre les boîtes.</p>
+
+    <!-- ── Théorème ────────────────────────────────────────── -->
+    <div class="box theorem">
+      <p class="box-title">Théorème <!-- ← numéro --></p>
+      <p>
+        <!-- ← Énoncé du théorème. -->
+        Toute fonction dérivable en \(a\) est continue en \(a\).
+      </p>
+    </div>
+
+    <!-- ── Preuve (optionnelle) ────────────────────────────── -->
+    <details>
+      <summary
+        style="font-family: var(--font-sans); font-size: var(--text-sm);
+               color: var(--color-text-secondary); cursor: pointer;
+               margin: var(--space-3) 0;">
+        Démonstration
+      </summary>
+      <div style="padding-left: var(--space-4); margin-top: var(--space-3);">
+        <p><!-- ← Corps de la preuve. --></p>
+        <p class="text-right" style="font-size:var(--text-xl);">□</p>
+      </div>
+    </details>
+
+    <!-- ── Exemple ─────────────────────────────────────────── -->
+    <div class="box example">
+      <p class="box-title">Exemple</p>
+      <p>
+        <!-- ← Exemple illustrant la définition / le théorème. -->
+        La fonction \(f(x) = \sqrt{x}\) est continue sur
+        \([0, +\infty[\) car elle est dérivable sur \(]0, +\infty[\)
+        et continue en 0 par définition.
+      </p>
+    </div>
+
+    <!-- ── Remarque ────────────────────────────────────────── -->
+    <div class="box remark">
+      <p class="box-title">Remarque</p>
+      <p>
+        <!-- ← Remarque, mise en garde ou précision. -->
+        La réciproque du théorème est fausse : \(f(x) = |x|\) est
+        continue en 0 mais pas dérivable en 0.
+      </p>
+    </div>
+
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       SECTION 2 — Deuxième section
+       ════════════════════════════════════════════════════════ -->
+  <section>
+    <h3>2. <!-- ← Titre de la section --></h3>
+
+    <p><!-- ← Contenu de la section. --></p>
+
+    <!-- Sous-section -->
+    <h4>2.1 <!-- ← Titre de la sous-section --></h4>
+    <p><!-- ← Contenu. --></p>
+
+  </section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       MÉTHODE / ALGORITHME (optionnel)
+       ════════════════════════════════════════════════════════ -->
+  <!--
+  <div class="box theorem">
+    <p class="box-title">Méthode</p>
+    <ol>
+      <li>Première étape.</li>
+      <li>Deuxième étape.</li>
+      <li>Troisième étape.</li>
+    </ol>
+  </div>
+  -->
+
+</article>
+
+<!-- ── Navigation bas de page ────────────────────────────────── -->
+<nav id="navigation">
+  <ul>
+    <li><a href="../../index.html">← Retour au cours</a></li>
+    <li><a href="/index.html">Accueil</a></li>
+  </ul>
+</nav>
+
+</body>
+</html>

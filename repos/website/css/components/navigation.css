@@ -1,22 +1,42 @@
+/*
+ * components/navigation.css — Navigation en bas de page
+ * La navigation principale du site est dans layout.css (#site-nav)
+ * Requiert variables.css
+ */
+
+/* ─── NAVIGATION BAS DE PAGE ──────────────────────────────────── */
+
 #navigation {
-    /*border: solid 1px green;*/
-    /*background-color: rgb(171, 171, 171);*/
-    padding-top: 5px;
-    padding-bottom: 5px;
+  margin-top:    var(--space-12, 48px);
+  padding-top:   var(--space-6, 24px);
+  border-top:    1px solid var(--color-border, #D0D0DC);
+  text-align:    center;
 }
 
 #navigation ul {
-    /*border: solid 1px orange;*/
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 0px;
+  list-style:      none;
+  margin:          0 auto;
+  padding:         0;
+  display:         flex;
+  justify-content: center;
+  gap:             var(--space-6, 24px);
+  flex-wrap:       wrap;
+  width:           fit-content;
 }
 
 #navigation li {
-    display: inline;
-    margin-left: 10px;
-    margin-right: 10px;
-    /*border: solid 1px red;*/
+  display: inline;
+  margin: 0;
 }
 
+#navigation a {
+  font-family: var(--font-sans, "CMU Bright Roman", sans-serif);
+  font-size:   var(--text-sm, 0.875rem);
+  color:       var(--color-text-secondary, #55556A);
+  transition:  color var(--transition-fast, 0.15s ease);
+}
+
+#navigation a:hover {
+  color:           var(--color-primary, #6B32E8);
+  text-decoration: none;
+}

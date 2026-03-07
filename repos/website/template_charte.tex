@@ -1,19 +1,18 @@
 % ============================================================
 %  ARS TYPOGRAPHICA — Template LaTeX
 %  Charte Graphique Minimaliste, inspiration TAOCP / Knuth
-%  Version 1.0 — Mars 2026
+%  Version 1.1 — Mars 2026
+%  Inclus : environnements mathématiques complets numérotés
 % ============================================================
 %
-%  Usage :
-%    \documentclass{article}  (ou book, report)
-%    puis \input{template_charte}
-%  ou directement compiler ce fichier comme document autonome.
+%  Compilez avec : pdflatex (2×) ou lualatex (recommandé)
 %
 %  Dépendances :
-%    lualatex (recommandé) ou pdflatex
-%    Packages : geometry, fontenc, inputenc, microtype,
-%               booktabs, xcolor, listings, hyperref,
-%               titlesec, fancyhdr, parskip, amsmath, amssymb
+%    geometry, fontenc, inputenc, microtype,
+%    booktabs, xcolor, listings, hyperref,
+%    titlesec, fancyhdr, parskip,
+%    amsmath, amssymb, amsthm, thmtools,
+%    mdframed, enumitem, tcolorbox
 % ============================================================
 
 \documentclass[11pt, a4paper, twoside]{article}
@@ -21,18 +20,12 @@
 % ─── ENCODAGE & LANGUE ───────────────────────────────────────
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[french]{babel}         % remplacer par [english] si besoin
+\usepackage[french]{babel}
 
 % ─── TYPOGRAPHIE ─────────────────────────────────────────────
-% Computer Modern est la police par défaut de LaTeX.
-% Pour une version vectorielle améliorée, utiliser Latin Modern :
-\usepackage{lmodern}
-
-% Optimisation typographique (crénage, expansion)
-\usepackage{microtype}
-
-% Police monospace : Courier (ou inconsolata pour + de lisibilité)
-% \usepackage{inconsolata}  % décommenter pour Inconsolata
+\usepackage{lmodern}         % Latin Modern (amélioré de Computer Modern)
+\usepackage{microtype}       % Crénage et expansion optimaux
+% \usepackage{inconsolata}   % Décommenter pour Inconsolata (monospace)
 
 % ─── MISE EN PAGE ────────────────────────────────────────────
 \usepackage[
@@ -46,191 +39,302 @@
 ]{geometry}
 
 % ─── COULEURS ────────────────────────────────────────────────
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 
-\definecolor{ink}{HTML}{111111}         % Noir d'encre — texte principal
-\definecolor{darkgray}{HTML}{333333}    % Gris foncé — texte secondaire
-\definecolor{midgray}{HTML}{666666}     % Gris moyen — légendes, métadonnées
-\definecolor{lightgray}{HTML}{AAAAAA}   % Gris clair — repères, filets légers
-\definecolor{rulegray}{HTML}{CCCCCC}    % Gris séparateur — filets standard
-\definecolor{codebg}{HTML}{F5F5F5}      % Fond de code
-\definecolor{white}{HTML}{FFFFFF}       % Blanc pur
+\definecolor{ink}{HTML}{111111}
+\definecolor{darkgray}{HTML}{333333}
+\definecolor{midgray}{HTML}{666666}
+\definecolor{lightgray}{HTML}{AAAAAA}
+\definecolor{rulegray}{HTML}{CCCCCC}
+\definecolor{codebg}{HTML}{F5F5F5}
+\definecolor{thmbg}{HTML}{F5F5F5}
 
-% Couleur par défaut du texte
 \color{ink}
-
-% ─── EN-TÊTES ET PIEDS DE PAGE ───────────────────────────────
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-\fancyhf{}
-
-% En-tête courant
-\fancyhead[LE]{\small\itshape\color{lightgray}\leftmark}
-\fancyhead[RO]{\small\itshape\color{lightgray}\rightmark}
-\fancyhead[LO,RE]{}
-
-% Filets d'en-tête et de pied
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\headrule}{\color{rulegray}\hrule width\headwidth height\headrulewidth}
-\renewcommand{\footrulewidth}{0pt}
-
-% Folio centré (ou extérieur selon la classe)
-\fancyfoot[C]{\small\color{midgray}\thepage}
-
-% Style pour la première page de section
-\fancypagestyle{plain}{%
-  \fancyhf{}
-  \fancyfoot[C]{\small\color{midgray}\thepage}
-  \renewcommand{\headrulewidth}{0pt}
-}
-
-% ─── TITRES DE SECTIONS ──────────────────────────────────────
-\usepackage{titlesec}
-
-% H1 : 17pt gras — espace avant 24pt, après 12pt
-\titleformat{\section}
-  {\fontsize{17}{22}\bfseries\color{ink}}
-  {\S\,\thesection}{1em}{}
-\titlespacing*{\section}{0pt}{24pt}{12pt}
-
-% H2 : 13pt gras — espace avant 18pt, après 8pt
-\titleformat{\subsection}
-  {\fontsize{13}{18}\bfseries\color{ink}}
-  {\S\,\thesubsection}{1em}{}
-\titlespacing*{\subsection}{0pt}{18pt}{8pt}
-
-% H3 : 11pt gras italique — espace avant 12pt, après 6pt
-\titleformat{\subsubsection}
-  {\fontsize{11}{16}\bfseries\itshape\color{ink}}
-  {\S\,\thesubsubsection}{1em}{}
-\titlespacing*{\subsubsection}{0pt}{12pt}{6pt}
-
-% ─── PARAGRAPHES ─────────────────────────────────────────────
-% Pas d'indentation — espace entre paragraphes
-\usepackage{parskip}
-\setlength{\parskip}{6pt}
-\setlength{\parindent}{0pt}
 
 % ─── MATHÉMATIQUES ───────────────────────────────────────────
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{mathtools}
 
-% Environnements théorèmes
-\theoremstyle{definition}
-\newtheorem{definition}{Définition}[section]
-\newtheorem{theorem}{Théorème}[section]
-\newtheorem{lemma}[theorem]{Lemme}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollaire}
+% ─── CADRES POUR THÉORÈMES ───────────────────────────────────
+\usepackage[framemethod=TikZ]{mdframed}
 
-\theoremstyle{remark}
-\newtheorem*{remark}{Remarque}
-\newtheorem*{example}{Exemple}
+% Style cadre léger (définitions, théorèmes)
+\mdfdefinestyle{thmstyle}{
+  linecolor      = rulegray,
+  linewidth      = 0.4pt,
+  backgroundcolor= thmbg,
+  innertopmargin = 8pt,
+  innerbottommargin = 8pt,
+  innerleftmargin = 10pt,
+  innerrightmargin = 10pt,
+  skipabove      = 10pt,
+  skipbelow      = 8pt,
+  nobreak        = true,
+}
+
+% Style cadre trait gauche (exemples, remarques)
+\mdfdefinestyle{examplestyle}{
+  topline        = false,
+  bottomline     = false,
+  rightline      = false,
+  linecolor      = rulegray,
+  linewidth      = 1.2pt,
+  backgroundcolor= white,
+  innertopmargin = 4pt,
+  innerbottommargin = 4pt,
+  innerleftmargin = 10pt,
+  innerrightmargin = 0pt,
+  skipabove      = 8pt,
+  skipbelow      = 6pt,
+}
+
+% Style encadré exercice
+\mdfdefinestyle{exercisestyle}{
+  linecolor      = ink,
+  linewidth      = 0.4pt,
+  backgroundcolor= white,
+  innertopmargin = 8pt,
+  innerbottommargin = 8pt,
+  innerleftmargin = 10pt,
+  innerrightmargin = 10pt,
+  skipabove      = 10pt,
+  skipbelow      = 8pt,
+}
+
+% ─── COMPTEURS ET STYLES DE THÉORÈMES ────────────────────────
+%
+%  Convention de numérotation :
+%  - Définition, Théorème, Proposition, Lemme, Corollaire
+%    → compteur unique par section : Théorème 1.1, Théorème 2.3 …
+%  - Exemple, Remarque → compteur propre par section
+%  - Exercice → compteur global par section, numéroté § 1, § 2 …
+%  - Correction → même numéro que l'exercice correspondant
+%  - Preuve → non numérotée, terminée par ■
+
+\newcounter{thmcnt}[section]
+\renewcommand{\thethmcnt}{\thesection.\arabic{thmcnt}}
+
+\newcounter{examplecnt}[section]
+\renewcommand{\theexamplecnt}{\thesection.\arabic{examplecnt}}
+
+\newcounter{exercisecnt}[section]
+\renewcommand{\theexercisecnt}{\thesection.\arabic{exercisecnt}}
+
+% Macro interne pour les environnements encadrés
+\newcommand{\thmheader}[2]{%
+  \textbf{#1\,\thethmcnt}%
+  \ifx\relax#2\relax\else~---~\textit{#2}\fi
+  \stepcounter{thmcnt}%
+}
+
+% ── DÉFINITION ───────────────────────────────────────────────
+\newenvironment{definition}[1][\relax]{%
+  \refstepcounter{thmcnt}%
+  \begin{mdframed}[style=thmstyle]
+  \noindent\textbf{Définition\,\thethmcnt}%
+  \ifx\relax#1\relax\else~\textup{(#1)}\fi.\quad\ignorespaces
+}{%
+  \end{mdframed}
+}
+
+% ── THÉORÈME ─────────────────────────────────────────────────
+\newenvironment{theorem}[1][\relax]{%
+  \refstepcounter{thmcnt}%
+  \begin{mdframed}[style=thmstyle]
+  \noindent\textbf{Théorème\,\thethmcnt}%
+  \ifx\relax#1\relax\else~\textup{(#1)}\fi.\quad\ignorespaces
+}{%
+  \end{mdframed}
+}
+
+% ── PROPOSITION ──────────────────────────────────────────────
+\newenvironment{proposition}[1][\relax]{%
+  \refstepcounter{thmcnt}%
+  \begin{mdframed}[style=thmstyle]
+  \noindent\textbf{Proposition\,\thethmcnt}%
+  \ifx\relax#1\relax\else~\textup{(#1)}\fi.\quad\ignorespaces
+}{%
+  \end{mdframed}
+}
+
+% ── LEMME ────────────────────────────────────────────────────
+\newenvironment{lemma}[1][\relax]{%
+  \refstepcounter{thmcnt}%
+  \begin{mdframed}[style=thmstyle]
+  \noindent\textbf{Lemme\,\thethmcnt}%
+  \ifx\relax#1\relax\else~\textup{(#1)}\fi.\quad\ignorespaces
+}{%
+  \end{mdframed}
+}
+
+% ── COROLLAIRE ───────────────────────────────────────────────
+\newenvironment{corollary}[1][\relax]{%
+  \refstepcounter{thmcnt}%
+  \begin{mdframed}[style=thmstyle]
+  \noindent\textbf{Corollaire\,\thethmcnt}%
+  \ifx\relax#1\relax\else~\textup{(#1)}\fi.\quad\ignorespaces
+}{%
+  \end{mdframed}
+}
+
+% ── PREUVE ───────────────────────────────────────────────────
+% Non numérotée. Se termine par le carré ■ (QED)
+\renewenvironment{proof}[1][Démonstration]{%
+  \noindent\textit{#1.}\quad\ignorespaces
+}{%
+  \hfill$\blacksquare$\par\vspace{4pt}
+}
+
+% ── EXEMPLE ──────────────────────────────────────────────────
+\newenvironment{example}[1][\relax]{%
+  \refstepcounter{examplecnt}%
+  \begin{mdframed}[style=examplestyle]
+  \noindent\textbf{Exemple\,\theexamplecnt}%
+  \ifx\relax#1\relax\else~\textup{(#1)}\fi.\quad\ignorespaces
+}{%
+  \end{mdframed}
+}
+
+% ── REMARQUE ─────────────────────────────────────────────────
+\newenvironment{remark}[1][\relax]{%
+  \refstepcounter{examplecnt}%
+  \begin{mdframed}[style=examplestyle]
+  \noindent\textbf{Remarque\,\theexamplecnt}%
+  \ifx\relax#1\relax\else~\textup{(#1)}\fi.\quad\ignorespaces\itshape
+}{%
+  \end{mdframed}
+}
+
+% ── EXERCICE ─────────────────────────────────────────────────
+\newenvironment{exercise}[1][\relax]{%
+  \refstepcounter{exercisecnt}%
+  \begin{mdframed}[style=exercisestyle]
+  \noindent\textbf{Exercice\,\theexercisecnt}%
+  \ifx\relax#1\relax\else~\textup{---~#1}\fi.\quad\ignorespaces
+}{%
+  \end{mdframed}
+}
+
+% ── CORRECTION ───────────────────────────────────────────────
+% Même compteur que l'exercice (ne l'incrémente pas)
+\newenvironment{correction}[1][\relax]{%
+  \begin{mdframed}[style=examplestyle]
+  \noindent\textit{Correction de l'exercice~\theexercisecnt}%
+  \ifx\relax#1\relax\else~\textup{(#1)}\fi.\quad\ignorespaces
+}{%
+  \hfill$\lozenge$%
+  \end{mdframed}
+}
+
+% ─── RÉFÉRENCES CROISÉES ─────────────────────────────────────
+% Utilisation : \label{thm:moi} dans l'env, puis \refthm{thm:moi}
+\newcommand{\refthm}[1]{Théorème~\ref{#1}}
+\newcommand{\refprop}[1]{Proposition~\ref{#1}}
+\newcommand{\reflem}[1]{Lemme~\ref{#1}}
+\newcommand{\refcor}[1]{Corollaire~\ref{#1}}
+\newcommand{\refdef}[1]{Définition~\ref{#1}}
+\newcommand{\refex}[1]{Exemple~\ref{#1}}
+\newcommand{\refexo}[1]{Exercice~\ref{#1}}
+
+% ─── NOTATIONS MATHÉMATIQUES ─────────────────────────────────
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Prob}{\mathbb{P}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\1}{\mathbf{1}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\DeclareMathOperator{\Card}{Card}
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\rk}{rk}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+% ─── EN-TÊTES ET PIEDS ───────────────────────────────────────
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\small\itshape\color{lightgray}\leftmark}
+\fancyhead[RO]{\small\itshape\color{lightgray}\rightmark}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\color{rulegray}\hrule width\headwidth height\headrulewidth}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\small\color{midgray}\thepage}
+\fancypagestyle{plain}{\fancyhf{}\fancyfoot[C]{\small\color{midgray}\thepage}\renewcommand{\headrulewidth}{0pt}}
+
+% ─── TITRES DE SECTIONS ──────────────────────────────────────
+\usepackage{titlesec}
+\titleformat{\section}{\fontsize{17}{22}\bfseries\color{ink}}{\S\,\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{24pt}{12pt}
+\titleformat{\subsection}{\fontsize{13}{18}\bfseries\color{ink}}{\S\,\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{18pt}{8pt}
+\titleformat{\subsubsection}{\fontsize{11}{16}\bfseries\itshape\color{ink}}{\S\,\thesubsubsection}{1em}{}
+\titlespacing*{\subsubsection}{0pt}{12pt}{6pt}
+
+% ─── PARAGRAPHES ─────────────────────────────────────────────
+\usepackage{parskip}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
 
 % ─── TABLEAUX ────────────────────────────────────────────────
-\usepackage{booktabs}       % Filets de tableau professionnels
+\usepackage{booktabs}
 \usepackage{array}
 \usepackage{longtable}
 
-% Environnement tableau standard conforme à la charte
-% Usage : \begin{chartable}{lll}{Titre du tableau}{tab:ref}
 \newenvironment{chartable}[3]{%
-  \begin{table}[htbp]
-  \caption{#2}\label{#3}
-  \centering
-  \small
-  \begin{tabular}{#1}
-  \toprule
+  \begin{table}[htbp]\caption{#2}\label{#3}\centering\small\begin{tabular}{#1}\toprule
 }{%
-  \bottomrule
-  \end{tabular}
-  \end{table}
+  \bottomrule\end{tabular}\end{table}
 }
 
 % ─── CODE SOURCE ─────────────────────────────────────────────
 \usepackage{listings}
-
 \lstset{
-  basicstyle    = \small\ttfamily\color{ink},
-  backgroundcolor = \color{codebg},
-  frame         = single,
-  framesep      = 4pt,
-  rulecolor     = \color{rulegray},
-  framerule     = 0.3pt,
-  numbers       = left,
-  numberstyle   = \tiny\color{lightgray},
-  numbersep     = 8pt,
-  stepnumber    = 1,
-  breaklines    = true,
-  breakatwhitespace = true,
-  showstringspaces = false,
-  tabsize       = 4,
-  % Différenciation par style (pas de couleurs)
-  keywordstyle  = \bfseries,
-  commentstyle  = \itshape\color{midgray},
-  stringstyle   = \ttfamily,
-  % Pseudo-code style
-  literate      = {<-}{$\leftarrow$}2 {->}{$\rightarrow$}2
-                  {<=}{$\leq$}2 {>=}{$\geq$}2
-                  {!=}{$\neq$}2,
+  basicstyle=\small\ttfamily\color{ink},
+  backgroundcolor=\color{codebg},
+  frame=single, framesep=4pt,
+  rulecolor=\color{rulegray}, framerule=0.3pt,
+  numbers=left, numberstyle=\tiny\color{lightgray}, numbersep=8pt,
+  breaklines=true, showstringspaces=false, tabsize=4,
+  keywordstyle=\bfseries,
+  commentstyle=\itshape\color{midgray},
+  stringstyle=\ttfamily,
+  literate={<-}{$\leftarrow$}2 {->}{$\rightarrow$}2
+           {<=}{$\leq$}2 {>=}{$\geq$}2 {!=}{$\neq$}2,
 }
-
-% Alias pour inline code
 \newcommand{\code}[1]{\texttt{#1}}
 
-% ─── FIGURES & LÉGENDES ──────────────────────────────────────
+% ─── FIGURES ─────────────────────────────────────────────────
 \usepackage{graphicx}
 \usepackage{caption}
-\usepackage{subcaption}
+\captionsetup{font={small,it}, labelfont={small,bf}, labelsep=period, textcolor=midgray}
 
-\captionsetup{
-  font      = {small, it},
-  labelfont = {small, bf},
-  labelsep  = period,
-  textcolor = midgray,
-}
-
-% ─── LIENS HYPERTEXTE ────────────────────────────────────────
-\usepackage[
-  colorlinks = true,
-  linkcolor  = ink,
-  urlcolor   = darkgray,
-  citecolor  = darkgray,
-  pdftitle   = {Document — Ars Typographica},
-  pdfauthor  = {},
-]{hyperref}
+% ─── LIENS ───────────────────────────────────────────────────
+\usepackage[colorlinks=true, linkcolor=ink, urlcolor=darkgray, citecolor=darkgray,
+            pdftitle={Document — Ars Typographica}]{hyperref}
 
 % ─── MACROS UTILITAIRES ──────────────────────────────────────
-% Numéro de section Knuth : \ksec{1.2.3}
 \newcommand{\ksec}[1]{\S\,#1}
+\newcommand{\lightrule}{{\color{rulegray}\rule{\linewidth}{0.4pt}}\vspace{4pt}}
+\newcommand{\heavyrule}{{\color{ink}\rule{\linewidth}{1.2pt}}\vspace{6pt}}
 
-% Filet de séparation léger
-\newcommand{\lightrule}{%
-  {\color{rulegray}\rule{\linewidth}{0.4pt}}%
-  \vspace{4pt}%
-}
-
-% Filet d'ouverture (couverture, avant-propos)
-\newcommand{\heavyrule}{%
-  {\color{ink}\rule{\linewidth}{1.2pt}}%
-  \vspace{6pt}%
-}
-
-% Bloc de résumé (abstract style TAOCP)
 \renewenvironment{abstract}{%
-  \small\itshape
-  \noindent\textbf{Résumé.} ---
+  \small\itshape\noindent\textbf{Résumé.} ---
 }{\par\vspace{6pt}\lightrule\vspace{6pt}}
 
-% Note marginale
-\usepackage{marginnote}
-\newcommand{\marginnote}[1]{%
-  \marginpar{\footnotesize\itshape\color{midgray}#1}%
-}
-
 % ─── PAGE DE TITRE ───────────────────────────────────────────
-% Redéfinition pour respecter la charte
 \renewcommand{\maketitle}{%
   \begin{center}
     \heavyrule
@@ -248,7 +352,6 @@
 % ============================================================
 %  DÉBUT DU DOCUMENT EXEMPLE
 % ============================================================
-
 \title{Titre du Document}
 \author{Prénom Nom}
 \date{Mars 2026}
@@ -262,90 +365,173 @@ Résumé concis du document en italique. Ce texte donne les grandes lignes
 du contenu et des conclusions, en deux à cinq phrases.
 \end{abstract}
 
-% ─── TABLE DES MATIÈRES ──────────────────────────────────────
 \tableofcontents
-\vspace{12pt}
-\lightrule
+\vspace{12pt}\lightrule
 
-% ─── SECTION EXEMPLE ─────────────────────────────────────────
-\section{Introduction}
+% ============================================================
+%  § 1 — DÉFINITIONS ET RÉSULTATS PRINCIPAUX
+% ============================================================
+\section{Définitions et résultats principaux}
 
-Texte d'introduction. Le corps du texte est composé en Computer Modern
-11\,pt avec un interlignage de 16\,pt. Les variables mathématiques
-sont en italique : l'algorithme prend en entrée une séquence
-$a_1, a_2, \ldots, a_n$ et retourne une permutation $\sigma$.
+Le texte courant est composé en Computer Modern 11\,pt, justifié,
+interlignage 16\,pt. Les variables sont en italique : $f\colon\R^n\to\R$,
+la norme euclidienne est $\norm{x} = \sqrt{x^\top x}$.
 
-\subsection{Contexte et motivations}
-
-Sous-section avec numérotation $\S\,1.1$. Le texte justifié occupe
-toute la largeur de la colonne. Le package \texttt{microtype} assure
-une justification optimale par expansion des glyphes.
-
-\subsubsection{Hypothèses}
-
-Un troisième niveau de titre, en gras italique 11\,pt. Utilisé avec
-parcimonie, uniquement pour les documents très structurés.
-
-\section{Notations et définitions}
-
-\begin{definition}[Complexité asymptotique]
-  On dit que $f(n) = O(g(n))$ s'il existe $c > 0$ et $n_0 \in \mathbb{N}$
-  tels que $f(n) \leq c \cdot g(n)$ pour tout $n \geq n_0$.
+\begin{definition}[Convergence uniforme]\label{def:cvunif}
+  Une suite de fonctions $(f_n)$ converge \emph{uniformément} vers $f$
+  sur $A \subset \R$ si
+  \[
+    \forall \varepsilon > 0,\;\exists N\in\N,\;\forall n\geq N,\;
+    \forall x\in A,\quad \abs{f_n(x)-f(x)} < \varepsilon.
+  \]
 \end{definition}
 
-\begin{theorem}[Borne inférieure du tri]
-  Tout algorithme de tri par comparaison requiert $\Omega(n \log n)$
+\begin{theorem}[Borne inférieure du tri]\label{thm:triling}
+  Tout algorithme de tri par comparaison requiert $\Omega(n\log n)$
   comparaisons dans le pire cas.
 \end{theorem}
 
 \begin{proof}
-  L'arbre de décision d'un algorithme de tri sur $n$ éléments possède
-  au moins $n!$ feuilles, donc une hauteur au moins $\log_2(n!) = \Omega(n \log n)$.
+  L'arbre de décision sur $n$ éléments possède au moins $n!$ feuilles,
+  donc sa hauteur est au moins $\log_2(n!) = \Omega(n\log n)$.
 \end{proof}
 
-\section{Exemple de code}
+\begin{proposition}[Critère de Cauchy]\label{prop:cauchy}
+  Une suite réelle $(u_n)$ est convergente si et seulement si elle est de
+  Cauchy, c'est-à-dire si
+  \[
+    \forall \varepsilon > 0,\;\exists N\in\N,\;\forall p,q\geq N,\quad
+    \abs{u_p - u_q} < \varepsilon.
+  \]
+\end{proposition}
 
-\begin{lstlisting}[language=Python, caption={Recherche KMP}]
-def kmp_search(text, pattern):
-    """Knuth-Morris-Pratt string matching."""
-    n, m = len(text), len(pattern)
-    lps = compute_lps(pattern)  # Longest proper prefix-suffix
-    i = j = 0
-    while i < n:
-        if pattern[j] == text[i]:
-            i += 1; j += 1
-        if j == m:
-            return i - j  # Match at position i-j
-        elif i < n and pattern[j] != text[i]:
-            j = lps[j - 1] if j != 0 else 0; i += (1 if j == 0 else 0)
-    return -1  # Not found
+\begin{lemma}[Sous-suite]\label{lem:sousuite}
+  Toute suite convergente est de Cauchy. La réciproque est vraie dans
+  $\R$ mais fausse dans $\Q$.
+\end{lemma}
+
+\begin{proof}
+  Si $u_n \to \ell$ alors, pour $\varepsilon > 0$, il existe $N$ tel que
+  $\abs{u_n - \ell} < \varepsilon/2$ pour $n\geq N$; par inégalité
+  triangulaire $\abs{u_p - u_q} < \varepsilon$ pour $p,q\geq N$.
+\end{proof}
+
+\begin{corollary}\label{cor:cvabsolue}
+  Toute série absolument convergente est convergente dans $\R$.
+\end{corollary}
+
+% ============================================================
+%  § 2 — EXEMPLES ET REMARQUES
+% ============================================================
+\section{Exemples et remarques}
+
+\begin{example}[Suite géométrique]\label{ex:geom}
+  La suite $u_n = r^n$ converge vers $0$ si $\abs{r}<1$, vers $1$ si
+  $r=1$, et diverge sinon. Le cas $r = 0.9$ donne
+  \[
+    u_{100} = 0.9^{100} \approx 2.656 \times 10^{-5}.
+  \]
+\end{example}
+
+\begin{example}[KMP en pratique]\label{ex:kmp}
+  L'algorithme de Knuth–Morris–Pratt recherche un motif de longueur $m$
+  dans un texte de longueur $n$ en $O(n+m)$ en prétraitant le tableau
+  \emph{lps} (longest proper prefix-suffix) du motif en $O(m)$.
+\end{example}
+
+\begin{remark}
+  La complexité $O(n+m)$ de KMP est optimale au sens de la complexité en
+  comparaisons de caractères, à une constante multiplicative près.
+\end{remark}
+
+\begin{remark}[Sur la \refdef{def:cvunif}]
+  La convergence uniforme implique la convergence simple, mais la
+  réciproque est fausse. La suite $f_n(x) = x^n$ sur $[0,1]$ converge
+  simplement vers $\mathbf{1}_{\{1\}}$, mais non uniformément.
+\end{remark}
+
+% ============================================================
+%  § 3 — EXERCICES ET CORRECTIONS
+% ============================================================
+\section{Exercices}
+
+\begin{exercise}[Convergence uniforme vs simple]
+  Montrer que la suite $f_n(x) = \dfrac{x}{1+nx^2}$ converge
+  uniformément vers $0$ sur $\R$.
+\end{exercise}
+
+\begin{correction}
+  On a $f_n(x) = \dfrac{x}{1+nx^2}$. Par l'inégalité AM-GM,
+  $1+nx^2 \geq 2\sqrt{n}\,\abs{x}$, donc
+  \[
+    \abs{f_n(x)} \leq \frac{\abs{x}}{2\sqrt{n}\,\abs{x}} = \frac{1}{2\sqrt{n}}
+    \xrightarrow[n\to\infty]{} 0
+  \]
+  uniformément en $x \in \R^*$; la borne est valable aussi en $x=0$.
+\end{correction}
+
+\begin{exercise}[Complexité du tri par fusion]
+  Établir la récurrence $T(n) = 2\,T(n/2) + \Theta(n)$ du tri par fusion
+  et en déduire $T(n) = \Theta(n\log n)$ par le théorème maître.
+\end{exercise}
+
+\begin{correction}
+  L'appel récursif sur deux moitiés donne le facteur $2\,T(n/2)$.
+  La fusion de deux listes triées de taille $n/2$ coûte $\Theta(n)$.
+  Le théorème maître (cas 2, $f(n) = \Theta(n^{\log_2 2}) = \Theta(n)$)
+  donne directement $T(n) = \Theta(n\log n)$.
+\end{correction}
+
+\begin{exercise}[Inégalité de Jensen]
+  Soit $\varphi\colon\R\to\R$ convexe et $X$ une variable aléatoire
+  intégrable. Démontrer que $\varphi(\E[X]) \leq \E[\varphi(X)]$.
+\end{exercise}
+
+% ============================================================
+%  § 4 — CODE ET TABLEAUX
+% ============================================================
+\section{Code et tableaux}
+
+\begin{lstlisting}[language=Python, caption={Tableau lps de KMP}]
+def compute_lps(pattern):
+    """Compute longest proper prefix-suffix array."""
+    m, lps = len(pattern), [0] * len(pattern)
+    length = 0; i = 1
+    while i < m:
+        if pattern[i] == pattern[length]:
+            length += 1; lps[i] = length; i += 1
+        elif length != 0:
+            length = lps[length - 1]
+        else:
+            lps[i] = 0; i += 1
+    return lps
 \end{lstlisting}
 
-\section{Tableau exemple}
-
-\begin{chartable}{llrr}{Complexités des algorithmes de tri}{tab:complexites}
-  \textbf{Algorithme} & \textbf{Cas moyen} & \textbf{Pire cas} & \textbf{Mémoire} \\
+\begin{chartable}{lrrrr}{Complexités — algorithmes de tri}{tab:tri}
+  \textbf{Algorithme} & \textbf{Meilleur} & \textbf{Moyen}
+    & \textbf{Pire} & \textbf{Mémoire} \\
   \midrule
-  Insertion sort & $O(n^2)$ & $O(n^2)$ & $O(1)$ \\
-  Mergesort      & $O(n \log n)$ & $O(n \log n)$ & $O(n)$ \\
-  Quicksort      & $O(n \log n)$ & $O(n^2)$ & $O(\log n)$ \\
-  Heapsort       & $O(n \log n)$ & $O(n \log n)$ & $O(1)$ \\
+  Insertion sort & $O(n)$ & $O(n^2)$ & $O(n^2)$ & $O(1)$ \\
+  Mergesort & $O(n\log n)$ & $O(n\log n)$ & $O(n\log n)$ & $O(n)$ \\
+  Quicksort & $O(n\log n)$ & $O(n\log n)$ & $O(n^2)$ & $O(\log n)$ \\
+  Heapsort & $O(n\log n)$ & $O(n\log n)$ & $O(n\log n)$ & $O(1)$ \\
+  Timsort & $O(n)$ & $O(n\log n)$ & $O(n\log n)$ & $O(n)$ \\
 \end{chartable}
 
 % ─── RÉFÉRENCES ──────────────────────────────────────────────
 \begin{thebibliography}{9}
   \bibitem{knuth1997}
-    Donald E.~Knuth,
-    \textit{The Art of Computer Programming, Vol.~1: Fundamental Algorithms},
-    3\textsuperscript{e} éd., Addison-Wesley, 1997.
-
+    D.\,E.~Knuth, \textit{The Art of Computer Programming, Vol.\,1},
+    3\textsuperscript{e}~éd., Addison-Wesley, 1997.
   \bibitem{knuth1998}
-    Donald E.~Knuth,
-    \textit{The Art of Computer Programming, Vol.~3: Sorting and Searching},
-    2\textsuperscript{e} éd., Addison-Wesley, 1998.
+    D.\,E.~Knuth, \textit{The Art of Computer Programming, Vol.\,3},
+    2\textsuperscript{e}~éd., Addison-Wesley, 1998.
+  \bibitem{rudin}
+    W.~Rudin, \textit{Principles of Mathematical Analysis},
+    3\textsuperscript{e}~éd., McGraw-Hill, 1976.
 \end{thebibliography}
 
 \end{document}
 % ============================================================
-%  FIN DU TEMPLATE — ARS TYPOGRAPHICA v1.0
+%  FIN — ARS TYPOGRAPHICA v1.1
 % ============================================================

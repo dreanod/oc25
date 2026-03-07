@@ -1,0 +1,211 @@
+/*
+ * ================================================================
+ *  CHARTE GRAPHIQUE — Denis Dréano  ·  Ars Typographica
+ *  variables.css — Système de design (tokens CSS)
+ *  Version 2.0 — Mars 2026
+ * ================================================================
+ *
+ *  Palette : niveaux de gris exclusivement.
+ *  Aucune couleur d'accent n'est autorisée.
+ *  Rigueur, économie de moyens, pérennité.
+ *
+ *  Usage : inclure EN PREMIER dans chaque page HTML.
+ *    <link rel="stylesheet" href="/css/variables.css">
+ *    <link rel="stylesheet" href="/css/layout.css">
+ *    <link rel="stylesheet" href="/css/base.css">
+ *
+ * ================================================================
+ */
+
+:root {
+
+  /* ─── PALETTE — NIVEAUX DE GRIS ──────────────────────────────
+   *
+   *  #111111  Noir d'encre    texte principal, titres
+   *  #333333  Gris foncé      texte secondaire, valeurs de tableau
+   *  #666666  Gris moyen      légendes, métadonnées, texte inactif
+   *  #AAAAAA  Gris clair      numéros de section, filets légers
+   *  #CCCCCC  Gris séparateur bordures de tableau, filets horizontaux
+   *  #F5F5F5  Fond de code    arrière-plan des blocs monospace
+   *  #FFFFFF  Blanc pur       fond de page, cellules de tableau
+   *
+   * ─────────────────────────────────────────────────────────── */
+
+  --gray-ink:       #111111;   /* Noir d'encre */
+  --gray-dark:      #333333;   /* Gris foncé   */
+  --gray-mid:       #666666;   /* Gris moyen   */
+  --gray-light:     #AAAAAA;   /* Gris clair   */
+  --gray-rule:      #CCCCCC;   /* Gris séparateur */
+  --gray-bg-code:   #F5F5F5;   /* Fond de code */
+  --gray-white:     #FFFFFF;   /* Blanc pur    */
+
+  /* Niveaux intermédiaires (utilisation interne) */
+  --gray-85:        #D9D9D9;
+  --gray-92:        #EBEBEB;
+
+
+  /* ─── TEXTE ──────────────────────────────────────────────────
+   *
+   *  Jamais de couleur d'accent pour le texte.
+   *  La hiérarchie visuelle passe uniquement par le corps,
+   *  la graisse et l'italique.
+   *
+   * ─────────────────────────────────────────────────────────── */
+
+  --color-text:           var(--gray-ink);    /* Corps courant     */
+  --color-text-secondary: var(--gray-dark);   /* Texte secondaire  */
+  --color-text-muted:     var(--gray-mid);    /* Légendes, notes   */
+  --color-text-ghost:     var(--gray-light);  /* Numéros, repères  */
+
+
+  /* ─── FONDS ──────────────────────────────────────────────────  */
+
+  --color-bg:             var(--gray-white);     /* Fond de page     */
+  --color-surface:        var(--gray-bg-code);   /* Fond de surface  */
+  --color-surface-mid:    var(--gray-92);        /* Surface plus foncée */
+
+
+  /* ─── BORDURES & FILETS ──────────────────────────────────────
+   *
+   *  --rule-light : 0.4 pt — entre sections, filets légers
+   *  --rule-heavy : 1.2 pt — ouverture de document, couverture
+   *
+   * ─────────────────────────────────────────────────────────── */
+
+  --color-border:         var(--gray-rule);    /* Filet standard   */
+  --color-border-strong:  var(--gray-mid);     /* Filet fort       */
+  --color-border-heavy:   var(--gray-ink);     /* Filet d'ouverture */
+
+  --rule-light:  0.4pt;
+  --rule-heavy:  1.2pt;
+
+
+  /* ─── LIENS ──────────────────────────────────────────────────
+   *
+   *  Les liens sont noir d'encre + soulignement.
+   *  Aucune couleur d'accent (pas de bleu, pas de violet).
+   *
+   * ─────────────────────────────────────────────────────────── */
+
+  --link-color:      var(--gray-ink);
+  --link-hover:      var(--gray-dark);
+  --link-decoration: underline;
+
+
+  /* ─── TYPOGRAPHIE ────────────────────────────────────────────
+   *
+   *  Police sérif  : CMU Serif (équiv. Computer Modern)
+   *  Police sans   : CMU Bright Roman
+   *  Police mono   : CMU Typewriter Regular
+   *  Fallbacks universels pour les environnements sans CMU.
+   *
+   * ─────────────────────────────────────────────────────────── */
+
+  --font-serif:  "CMU Serif", "Times New Roman", Georgia, serif;
+  --font-sans:   "CMU Bright Roman", "Helvetica Neue", Arial, sans-serif;
+  --font-mono:   "CMU Typewriter Regular", "Courier New", Courier, monospace;
+
+  /* Échelle typographique (px → rem à 16 px/base) */
+  --text-xs:   0.75rem;    /* 12 px — note de bas de page  */
+  --text-sm:   0.875rem;   /* 14 px — légende, annotation  */
+  --text-base: 1rem;       /* 16 px — corps de texte       */
+  --text-lg:   1.125rem;   /* 18 px — lead / intro         */
+  --text-xl:   1.25rem;    /* 20 px — H4 / sous-titre      */
+  --text-2xl:  1.5rem;     /* 24 px — H3                   */
+  --text-3xl:  1.875rem;   /* 30 px — H2                   */
+  --text-4xl:  2.25rem;    /* 36 px — H1                   */
+
+  /* Interlignages */
+  --leading-tight:   1.25;
+  --leading-normal:  1.45;
+  --leading-relaxed: 1.65;
+
+
+  /* ─── ESPACEMENTS ────────────────────────────────────────────  */
+
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  20px;
+  --space-6:  24px;
+  --space-8:  32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+
+  /* ─── MISE EN PAGE WEB ───────────────────────────────────────
+   *
+   *  Trois largeurs canoniques :
+   *    narrow (600px) — prose, exercices, corrections
+   *    text   (720px) — cours enrichis avec boîtes
+   *    wide  (1000px) — tableaux, fiches, schémas
+   *
+   * ─────────────────────────────────────────────────────────── */
+
+  --layout-narrow: 600px;
+  --layout-text:   720px;
+  --layout-wide:  1000px;
+
+
+  /* ─── COMPOSANTS ─────────────────────────────────────────────  */
+
+  --radius-sm:  4px;
+  --radius-md:  8px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+
+
+  /* ─── BOÎTES PÉDAGOGIQUES ────────────────────────────────────
+   *
+   *  La différenciation est typographique, jamais chromatique.
+   *  On distingue par : épaisseur du filet, fond, graisse du titre.
+   *
+   *  Définition  — fond #F5F5F5 + filet gauche 4px #333333
+   *  Théorème    — fond #EBEBEB + filet gauche 4px #111111
+   *  Exemple     — fond #FFFFFF + filet gauche 1px #AAAAAA (discret)
+   *  Remarque    — fond #F5F5F5 + filet gauche 4px #AAAAAA (pointillé)
+   *  Correction  — fond #EBEBEB + filet gauche 4px #333333
+   *  Avertissement — fond #F5F5F5 + filet gauche 4px #111111
+   *
+   * ─────────────────────────────────────────────────────────── */
+
+  --box-definition-bg:      var(--gray-bg-code);   /* #F5F5F5 */
+  --box-definition-border:  var(--gray-dark);       /* #333333 */
+
+  --box-theorem-bg:         var(--gray-92);         /* #EBEBEB */
+  --box-theorem-border:     var(--gray-ink);        /* #111111 */
+
+  --box-example-bg:         var(--gray-white);      /* #FFFFFF */
+  --box-example-border:     var(--gray-light);      /* #AAAAAA */
+
+  --box-remark-bg:          var(--gray-bg-code);    /* #F5F5F5 */
+  --box-remark-border:      var(--gray-light);      /* #AAAAAA */
+
+  --box-correction-bg:      var(--gray-92);         /* #EBEBEB */
+  --box-correction-border:  var(--gray-dark);       /* #333333 */
+
+  --box-warning-bg:         var(--gray-bg-code);    /* #F5F5F5 */
+  --box-warning-border:     var(--gray-ink);        /* #111111 */
+
+
+  /* ─── NAVIGATION ─────────────────────────────────────────────
+   *
+   *  La barre de navigation suit la charte :
+   *  fond blanc, filet inférieur #CCCCCC, texte #333333.
+   *  Lien actif : souligné + gras.
+   *
+   * ─────────────────────────────────────────────────────────── */
+
+  --nav-bg:          var(--gray-white);
+  --nav-border:      var(--gray-rule);
+  --nav-text:        var(--gray-dark);
+  --nav-text-active: var(--gray-ink);
+
+}

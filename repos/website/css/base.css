@@ -1,95 +1,330 @@
-body {
-    font-family: "CMU Serif";
-    line-height: 1.45em;
-    color: rgb(29, 29, 31);
+/*
+ * base.css — Typographie & styles de base
+ * Requiert variables.css
+ *
+ * Palette : niveaux de gris uniquement.
+ * Aucune couleur d'accent autorisée.
+ */
+
+/* ─── RESET LÉGER ─────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
+
+/* ─── CORPS ───────────────────────────────────────────────────── */
+
+body {
+  font-family:  var(--font-serif);
+  font-size:    var(--text-base);
+  line-height:  var(--leading-normal);
+  color:        var(--color-text);
+  background:   var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+
+/* ─── TITRES ──────────────────────────────────────────────────── */
+
 h1 {
-    width: fit-content;
-    margin-top: 50px;
-    margin-bottom: 40px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+  font-family:  var(--font-serif);
+  font-size:    var(--text-4xl);
+  font-weight:  700;
+  line-height:  var(--leading-tight);
+  text-align:   center;
+  margin-top:   var(--space-12);
+  margin-bottom:var(--space-6);
+  color:        var(--color-text);
 }
 
 h2 {
-    font-family: "CMU Bright Roman";
-    font-weight: 500;
-    text-align: center;
-    width: fit-content;
-    margin-bottom: 40px;
-    margin-left: auto;
-    margin-right: auto;
+  font-family:  var(--font-sans);
+  font-size:    var(--text-xl);
+  font-weight:  500;
+  text-align:   center;
+  color:        var(--color-text-secondary);
+  margin-bottom:var(--space-10);
+  margin-top:   0;
 }
 
-h2::before {
-    content: " ";
-    display: block;
-    width: 60px;
-    height: 1px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    background: #333;
-}
-
-h3, h4, h5, h6 {
-    font-family: 'CMU Bright Roman';
-    font-weight: 500;
-    font-style: normal;
+/* Ligne décorative — filet #CCCCCC, 1px */
+h1 + h2::before,
+h2.subtitle::before {
+  content:   "";
+  display:   block;
+  width:     60px;
+  height:    1px;
+  background: var(--color-border);
+  margin:    var(--space-5) auto;
 }
 
 h3 {
-    font-size: 24px;
-    margin-top: 40px;
+  font-family:  var(--font-sans);
+  font-size:    var(--text-2xl);
+  font-weight:  600;
+  color:        var(--color-text);
+  margin-top:   var(--space-10);
+  margin-bottom:var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--color-border);
 }
 
 h4 {
-    font-size: 20px;
+  font-family:  var(--font-sans);
+  font-size:    var(--text-xl);
+  font-weight:  500;
+  color:        var(--color-text);
+  margin-top:   var(--space-8);
+  margin-bottom:var(--space-3);
 }
 
-li::before {
-  content: "";
-  width: 6px;
-  height: 15px;
-  background: #333;
-  border-radius: 50%;
-  top: 0.6em;
+h5, h6 {
+  font-family:  var(--font-sans);
+  font-weight:  500;
+  color:        var(--color-text);
+  margin-top:   var(--space-6);
+  margin-bottom:var(--space-2);
 }
 
-/*------------------ IMAGES -----------------*/
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-base); font-style: italic; }
 
-img.small{
-    width: 70px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+
+/* ─── TEXTE ───────────────────────────────────────────────────── */
+
+p {
+  margin-top:    0;
+  margin-bottom: var(--space-4);
 }
 
-img.medium {
-    width: 200px;
-    float: left;
-    margin-right: 10px;
+/* Liens : noir souligné — pas de couleur d'accent */
+a {
+  color:           var(--link-color);
+  text-decoration: var(--link-decoration);
+  transition:      color var(--transition-fast);
 }
 
-img.big {
-    width: 400px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+a:hover {
+  color:           var(--link-hover);
+  text-decoration: underline;
 }
 
-#instructions li {
-    font-style: italic;
-    line-height: .9em;
+strong, b  { font-weight: 700; }
+em, i      { font-style: italic; }
+
+/* Monospace : fond #F5F5F5, pas de couleur */
+code, kbd, samp {
+  font-family:   var(--font-mono);
+  font-size:     0.9em;
+  background:    var(--gray-bg-code);
+  border:        1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding:       1px 5px;
 }
 
-ol {
-    list-style-type: lower-alpha;
+pre {
+  font-family:   var(--font-mono);
+  font-size:     var(--text-sm);
+  background:    var(--gray-bg-code);
+  border:        1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding:       var(--space-4);
+  overflow-x:    auto;
+  line-height:   var(--leading-relaxed);
 }
 
-ol ol {
-    list-style-type: lower-roman;
+pre code { background: none; border: none; padding: 0; }
+
+blockquote {
+  border-left: 4px solid var(--color-border);
+  margin:      var(--space-6) 0;
+  padding:     var(--space-3) var(--space-6);
+  color:       var(--color-text-muted);
+  font-style:  italic;
 }
+
+
+/* ─── LISTES ──────────────────────────────────────────────────── */
+
+ul, ol {
+  padding-left: var(--space-6);
+  margin-bottom:var(--space-4);
+}
+
+li {
+  margin-bottom: var(--space-1);
+  line-height:   var(--leading-normal);
+}
+
+ol        { list-style-type: lower-alpha; }
+ol ol     { list-style-type: lower-roman; }
+
+
+/* ─── TABLEAUX ────────────────────────────────────────────────── */
+
+/* En-tête fond noir, texte blanc — conforme à TAOCP */
+table {
+  width:           100%;
+  border-collapse: collapse;
+  font-size:       var(--text-sm);
+  margin-bottom:   var(--space-6);
+}
+
+th {
+  background:  var(--gray-ink);      /* #111111 */
+  color:       var(--gray-white);    /* #FFFFFF */
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-align:  left;
+  padding:     var(--space-3) var(--space-4);
+  border:      1px solid var(--gray-ink);
+}
+
+td {
+  padding:        var(--space-3) var(--space-4);
+  border:         1px solid var(--color-border);
+  vertical-align: top;
+}
+
+/* Alternance blanc / gris très léger */
+tr:nth-child(even) td {
+  background: var(--gray-bg-code);   /* #F5F5F5 */
+}
+
+/* Tableau id="doc-header" — pas d'alternance, pas de bordures */
+#doc-header th,
+#doc-header td {
+  background: transparent;
+  border:     none;
+  padding-bottom: var(--space-2);
+  line-height: var(--leading-tight);
+}
+
+
+/* ─── IMAGES ──────────────────────────────────────────────────── */
+
+img {
+  max-width: 100%;
+  height:    auto;
+  display:   block;
+  margin:    var(--space-4) auto;
+}
+
+img.small  { width: 80px; }
+img.medium { width: 220px; float: left; margin-right: var(--space-4); }
+img.big    { width: 450px; }
+img.full   { width: 100%; }
+
+
+/* ─── BOÎTES PÉDAGOGIQUES ─────────────────────────────────────── */
+
+/*
+ * La différenciation est TYPOGRAPHIQUE, jamais chromatique.
+ * On distingue par : épaisseur du filet, fond, graisse du titre.
+ */
+
+.box {
+  border-left:   4px solid var(--color-border);
+  background:    var(--color-surface);
+  padding:       var(--space-4) var(--space-5);
+  margin:        var(--space-6) 0;
+}
+
+.box-title {
+  font-family:    var(--font-sans);
+  font-weight:    700;
+  font-size:      var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color:          var(--color-text);
+  margin-bottom:  var(--space-3);
+}
+
+/* Définition — fond #F5F5F5, filet #333333 */
+.definition {
+  border-left-color: var(--box-definition-border);
+  background:        var(--box-definition-bg);
+}
+
+/* Théorème — fond #EBEBEB, filet #111111 + titre gras */
+.theorem, .proposition {
+  border-left:  4px solid var(--box-theorem-border);
+  background:   var(--box-theorem-bg);
+}
+
+/* Exemple — fond blanc, filet #AAAAAA discret (1px) */
+.example {
+  border-left:  1px solid var(--box-example-border);
+  background:   var(--box-example-bg);
+}
+.example .box-title { font-weight: 400; font-style: italic; text-transform: none; }
+
+/* Remarque — fond #F5F5F5, filet #AAAAAA pointillé */
+.remark {
+  border-left:  4px dashed var(--box-remark-border);
+  background:   var(--box-remark-bg);
+}
+.remark .box-title { font-style: italic; }
+
+/* Correction — fond #EBEBEB, filet #333333 */
+.correction, div.correction {
+  border-left:    4px solid var(--box-correction-border);
+  background:     var(--box-correction-bg);
+  padding:        var(--space-4) var(--space-5);
+  margin:         var(--space-4) 0;
+  font-style:     normal;
+}
+
+/* Avertissement — fond #F5F5F5, filet #111111 */
+.warning {
+  border-left:  4px solid var(--box-warning-border);
+  background:   var(--box-warning-bg);
+}
+.warning .box-title { font-style: italic; }
+
+
+/* ─── NAVIGATION EN-TÊTE DOCUMENT ────────────────────────────── */
+
+.doc-header {
+  display:         flex;
+  justify-content: space-between;
+  align-items:     flex-start;
+  font-family:     var(--font-sans);
+  font-size:       var(--text-sm);
+  color:           var(--color-text-secondary);
+  border-bottom:   1px solid var(--color-border);
+  padding-bottom:  var(--space-4);
+  margin-bottom:   var(--space-8);
+}
+
+.doc-header .doc-institution { font-style: italic; }
+.doc-header .doc-class       { font-weight: 600; }
+.doc-header .doc-date        { text-align: right; }
+
+
+/* ─── POINTS ──────────────────────────────────────────────────── */
+
+.points {
+  font-style:  italic;
+  color:       var(--color-text-muted);
+  font-size:   var(--text-sm);
+  font-family: var(--font-sans);
+}
+
+
+/* ─── SAUTS DE PAGE ───────────────────────────────────────────── */
+
+.page-break  { break-before: page; }
+.avoid-break { break-inside: avoid; }
+
+
+/* ─── UTILITAIRES ─────────────────────────────────────────────── */
+
+.text-center  { text-align: center; }
+.text-right   { text-align: right; }
+.text-muted   { color: var(--color-text-muted); }
+.text-small   { font-size: var(--text-sm); }
+.italic       { font-style: italic; }
+.uppercase    { text-transform: uppercase; letter-spacing: 0.06em; }
+.clearfix::after { content: ""; display: table; clear: both; }

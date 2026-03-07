@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<!--
+  TEMPLATE — FEUILLE D'EXERCICES
+  ════════════════════════════════════════════════════════════════
+  Usage :
+    1. Copier ce fichier, renommer avec date et titre,
+       ex. : 2026-03-10_exercices_fonctions.html
+    2. Remplacer les champs marqués ← par le contenu réel.
+    3. Pour chaque exercice : dupliquer le bloc <div class="exercice">
+       et ses sous-questions.
+
+  Structure d'un exercice :
+    <h3>Exercice N  <span class="points">X pt(s)</span></h3>
+    <p> Énoncé de l'exercice… </p>
+    <ol>
+      <li class="question">Sous-question a)
+        <span class="points">Y pt(s)</span>
+      </li>
+      …
+    </ol>
+
+  Notes sur les points :
+    - Le span.points sur le h3 affiche le total de l'exercice.
+    - Le span.points sur un li.question affiche les points de la
+      sous-question (affiché en marge à droite).
+    - Supprimer les span.points si la page n'est pas une évaluation.
+  ════════════════════════════════════════════════════════════════
+-->
+
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exercices — <!-- ← Titre --> — Denis Dréano</title>
+
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components/exercices.css">
+  <link rel="stylesheet" href="/css/print.css">
+
+  <!-- MathJax -->
+  <script>
+  MathJax = {
+    tex: {
+      macros: {
+        ts: ["\\text{'}"],
+        R:  ["\\mathbb{R}"],
+        N:  ["\\mathbb{N}"],
+        Z:  ["\\mathbb{Z}"],
+        Q:  ["\\mathbb{Q}"],
+        C:  ["\\mathbb{C}"]
+      }
+    }
+  };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+</head>
+
+<body>
+
+<!-- ── Navigation du site ────────────────────────────────────── -->
+<nav id="site-nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/index.html">Denis Dréano</a>
+    <ul class="nav-links">
+      <li><a href="/index.html">Accueil</a></li>
+      <li><a href="/about.html">À propos</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Contenu principal ─────────────────────────────────────── -->
+<article>
+
+  <!-- ── En-tête du document ──────────────────────────────── -->
+  <table id="doc-header">
+    <tr>
+      <td class="left">Gymnase du Bugnon</td>
+      <td class="right"><!-- ← Classe, ex: 3M02 --></td>
+    </tr>
+    <tr>
+      <td class="left">Denis Dréano</td>
+      <td class="right"><!-- ← Date, ex: 10 mars 2026 --></td>
+    </tr>
+  </table>
+
+  <!-- ── Titres ────────────────────────────────────────────── -->
+  <h1><!-- ← Titre de la série, ex: Exercices — Fonctions --></h1>
+  <h2 class="subtitle"><!-- ← Sous-titre ou numéro de série --></h2>
+
+  <!-- Optionnel : instructions générales -->
+  <!--
+  <div class="box remark" id="instructions">
+    <p class="box-title">Instructions</p>
+    <ul>
+      <li>Justifier soigneusement toutes les réponses.</li>
+      <li>Le résultat seul ne suffit pas.</li>
+      <li>Durée : 45 minutes. Documents autorisés : …</li>
+    </ul>
+  </div>
+  -->
+
+
+  <!-- ════════════════════════════════════════════════════════
+       EXERCICE 1
+       ════════════════════════════════════════════════════════ -->
+  <div class="exercice avoid-break">
+
+    <h3>Exercice 1
+      <!-- Supprimer le span suivant si pas de points -->
+      <span class="points"><!-- X pt(s) --></span>
+    </h3>
+
+    <!-- Énoncé de l'exercice -->
+    <p>
+      <!-- ← Texte de l'énoncé. Exemple : -->
+      Soit \(f : \R \to \R\) définie par \(f(x) = x^2 - 3x + 2\).
+    </p>
+
+    <!-- Sous-questions -->
+    <ol>
+      <li class="question">
+        <!-- ← Sous-question a). -->
+        Calculer \(f(0)\), \(f(1)\) et \(f(3)\).
+        <span class="points"><!-- Y pt(s) --></span>
+      </li>
+
+      <li class="question">
+        <!-- ← Sous-question b). -->
+        Résoudre l'équation \(f(x) = 0\).
+        <span class="points"><!-- Y pt(s) --></span>
+      </li>
+
+      <li class="question">
+        <!-- ← Sous-question c). -->
+        Déterminer le minimum de \(f\) et la valeur de \(x\)
+        où il est atteint.
+        <span class="points"><!-- Y pt(s) --></span>
+      </li>
+    </ol>
+
+  </div><!-- fin exercice 1 -->
+
+
+  <!-- ════════════════════════════════════════════════════════
+       EXERCICE 2
+       ════════════════════════════════════════════════════════ -->
+  <div class="exercice avoid-break">
+
+    <h3>Exercice 2
+      <span class="points"><!-- X pt(s) --></span>
+    </h3>
+
+    <p>
+      <!-- ← Énoncé de l'exercice 2. -->
+    </p>
+
+    <ol>
+      <li class="question">
+        <!-- ← Sous-question a). -->
+        <span class="points"><!-- Y pt(s) --></span>
+      </li>
+
+      <li class="question">
+        <!-- ← Sous-question b). -->
+        <span class="points"><!-- Y pt(s) --></span>
+      </li>
+    </ol>
+
+  </div><!-- fin exercice 2 -->
+
+
+  <!-- ════════════════════════════════════════════════════════
+       EXERCICE 3 (exercice sans sous-questions)
+       ════════════════════════════════════════════════════════ -->
+  <div class="exercice avoid-break">
+
+    <h3>Exercice 3
+      <span class="points"><!-- X pt(s) --></span>
+    </h3>
+
+    <p>
+      <!-- ← Énoncé complet, sans subdivision. -->
+    </p>
+
+  </div><!-- fin exercice 3 -->
+
+
+  <!-- ════════════════════════════════════════════════════════
+       Ajouter d'autres exercices selon le même modèle.
+       Utiliser <div class="page-break"></div> pour forcer
+       un saut de page à l'impression.
+       ════════════════════════════════════════════════════════ -->
+
+</article>
+
+<!-- ── Navigation bas de page ────────────────────────────────── -->
+<nav id="navigation">
+  <ul>
+    <li><a href="../../index.html">← Retour au cours</a></li>
+    <li><a href="/index.html">Accueil</a></li>
+  </ul>
+</nav>
+
+</body>
+</html>

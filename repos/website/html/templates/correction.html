@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+
+<!--
+  TEMPLATE — PAGE DE CORRECTION
+  ════════════════════════════════════════════════════════════════
+  Usage :
+    1. Copier ce fichier, renommer en ajoutant _CORRIGÉ,
+       ex. : 2026-03-10_exercices_fonctions_CORRIGÉ.html
+    2. Remplacer les champs marqués ← par le contenu réel.
+    3. Chaque exercice doit correspondre exactement à la
+       feuille d'exercices associée (même numérotation).
+
+  Structure d'un exercice corrigé :
+    <h3>Exercice N</h3>
+    <p>Rappel de l'énoncé (optionnel, en italique)</p>
+    <ol>
+      <li class="question">
+        Rappel de la sous-question (optionnel)
+        <div class="correction">
+          Correction détaillée…
+        </div>
+      </li>
+    </ol>
+
+  Le bloc <div class="correction"> affiche automatiquement
+  le bandeau vert "Correction" grâce au CSS.
+  ════════════════════════════════════════════════════════════════
+-->
+
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Corrigé — <!-- ← Titre --> — Denis Dréano</title>
+
+  <link rel="stylesheet" href="/fonts/fonts.css">
+  <link rel="stylesheet" href="/css/variables.css">
+  <link rel="stylesheet" href="/css/layout.css">
+  <link rel="stylesheet" href="/css/base.css">
+  <link rel="stylesheet" href="/css/components/exercices.css">
+  <link rel="stylesheet" href="/css/print.css">
+
+  <!-- MathJax -->
+  <script>
+  MathJax = {
+    tex: {
+      macros: {
+        ts: ["\\text{'}"],
+        R:  ["\\mathbb{R}"],
+        N:  ["\\mathbb{N}"],
+        Z:  ["\\mathbb{Z}"],
+        Q:  ["\\mathbb{Q}"],
+        C:  ["\\mathbb{C}"]
+      }
+    }
+  };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+</head>
+
+<body>
+
+<!-- ── Navigation du site ────────────────────────────────────── -->
+<nav id="site-nav">
+  <div class="nav-inner">
+    <a class="nav-brand" href="/index.html">Denis Dréano</a>
+    <ul class="nav-links">
+      <li><a href="/index.html">Accueil</a></li>
+      <li><a href="/about.html">À propos</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── Contenu principal ─────────────────────────────────────── -->
+<article>
+
+  <!-- ── En-tête du document ──────────────────────────────── -->
+  <table id="doc-header">
+    <tr>
+      <td class="left">Gymnase du Bugnon</td>
+      <td class="right"><!-- ← Classe, ex: 3M02 --></td>
+    </tr>
+    <tr>
+      <td class="left">Denis Dréano</td>
+      <td class="right"><!-- ← Date, ex: 10 mars 2026 --></td>
+    </tr>
+  </table>
+
+  <!-- ── Titres ────────────────────────────────────────────── -->
+  <h1><!-- ← Titre, ex: Corrigé — Exercices sur les fonctions --></h1>
+  <h2 class="subtitle"><!-- ← Sous-titre ou numéro de série --></h2>
+
+  <!-- Bandeau signalant qu'il s'agit d'une correction -->
+  <div class="correction-banner">
+    Document corrigé — à consulter après avoir tenté les exercices
+  </div>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       EXERCICE 1
+       ════════════════════════════════════════════════════════ -->
+  <div class="exercice avoid-break">
+
+    <h3>Exercice 1</h3>
+
+    <!-- Rappel de l'énoncé (optionnel) -->
+    <p class="italic text-muted">
+      <!-- ← Coller ici l'énoncé de l'exercice en italique si souhaité. -->
+      Soit \(f : \R \to \R\) définie par \(f(x) = x^2 - 3x + 2\).
+    </p>
+
+    <ol>
+      <li class="question">
+        <!-- ← Rappel de la sous-question a) -->
+        Calculer \(f(0)\), \(f(1)\) et \(f(3)\).
+
+        <div class="correction">
+          <p>
+            <!-- ← Correction détaillée de a). -->
+            On calcule directement&nbsp;:
+          </p>
+          <p>
+            $$
+              f(0) = 0 - 0 + 2 = 2, \quad
+              f(1) = 1 - 3 + 2 = 0, \quad
+              f(3) = 9 - 9 + 2 = 2.
+            $$
+          </p>
+        </div>
+      </li>
+
+      <li class="question">
+        <!-- ← Rappel de la sous-question b) -->
+        Résoudre \(f(x) = 0\).
+
+        <div class="correction">
+          <p>
+            <!-- ← Correction de b). -->
+            On factorise&nbsp;: \(f(x) = (x-1)(x-2)\).
+            Donc \(f(x) = 0 \iff x = 1\) ou \(x = 2\).
+          </p>
+        </div>
+      </li>
+
+      <li class="question">
+        <!-- ← Rappel de la sous-question c) -->
+        Déterminer le minimum de \(f\).
+
+        <div class="correction">
+          <p>
+            <!-- ← Correction de c). -->
+            La parabole a son sommet en \(x_s = -\tfrac{b}{2a}
+            = \tfrac{3}{2}\).
+          </p>
+          <p>
+            Le minimum vaut&nbsp;:
+            $$
+              f\!\left(\tfrac{3}{2}\right)
+              = \tfrac{9}{4} - \tfrac{9}{2} + 2
+              = -\tfrac{1}{4}.
+            $$
+          </p>
+        </div>
+      </li>
+
+    </ol>
+  </div><!-- fin exercice 1 -->
+
+  <div class="page-break"></div>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       EXERCICE 2
+       ════════════════════════════════════════════════════════ -->
+  <div class="exercice avoid-break">
+
+    <h3>Exercice 2</h3>
+
+    <p class="italic text-muted">
+      <!-- ← Rappel de l'énoncé 2. -->
+    </p>
+
+    <ol>
+      <li class="question">
+        <!-- ← Rappel de la sous-question a) -->
+
+        <div class="correction">
+          <p>
+            <!-- ← Correction de a). -->
+          </p>
+        </div>
+      </li>
+
+      <li class="question">
+        <!-- ← Rappel de la sous-question b) -->
+
+        <div class="correction">
+          <p>
+            <!-- ← Correction de b). -->
+          </p>
+        </div>
+      </li>
+    </ol>
+
+  </div><!-- fin exercice 2 -->
+
+
+  <!-- ════════════════════════════════════════════════════════
+       EXERCICE 3 (exercice sans sous-questions)
+       ════════════════════════════════════════════════════════ -->
+  <div class="exercice avoid-break">
+
+    <h3>Exercice 3</h3>
+
+    <p class="italic text-muted">
+      <!-- ← Rappel de l'énoncé 3. -->
+    </p>
+
+    <div class="correction">
+      <p>
+        <!-- ← Correction complète. -->
+      </p>
+    </div>
+
+  </div><!-- fin exercice 3 -->
+
+
+  <!-- ════════════════════════════════════════════════════════
+       Ajouter d'autres exercices selon le même modèle.
+       ════════════════════════════════════════════════════════ -->
+
+</article>
+
+<!-- ── Navigation bas de page ────────────────────────────────── -->
+<nav id="navigation">
+  <ul>
+    <li>
+      <a href="exercices.html">← Feuille d'exercices</a>
+    </li>
+    <li><a href="../../index.html">Retour au cours</a></li>
+    <li><a href="/index.html">Accueil</a></li>
+  </ul>
+</nav>
+
+</body>
+</html>

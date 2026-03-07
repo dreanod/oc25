@@ -1,0 +1,336 @@
+/*
+ * charte-html.css — CSS pour la sortie HTML standalone de Pandoc
+ *
+ * Miroir fidèle du système CSS du site (variables.css + base.css + layout.css)
+ * mais en fichier unique auto-suffisant, pour les exports HTML hors-site.
+ *
+ * Usage : pandoc ... --css charte-html.css -o output.html
+ * Ou    : pandoc ... -H <(echo '<style>…</style>') pour embarquer
+ */
+
+/* ─── POLICES ─────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: "CMU Serif";
+  src: url("../../fonts/cmunrm.woff2") format("woff2"),
+       url("../../fonts/cmunrm.woff")  format("woff");
+  font-weight: 400; font-style: normal;
+}
+@font-face {
+  font-family: "CMU Serif";
+  src: url("../../fonts/cmunbx.woff2") format("woff2"),
+       url("../../fonts/cmunbx.woff")  format("woff");
+  font-weight: 700; font-style: normal;
+}
+@font-face {
+  font-family: "CMU Serif";
+  src: url("../../fonts/cmunti.woff2") format("woff2"),
+       url("../../fonts/cmunti.woff")  format("woff");
+  font-weight: 400; font-style: italic;
+}
+@font-face {
+  font-family: "CMU Bright Roman";
+  src: url("../../fonts/cmunbmr.woff2") format("woff2"),
+       url("../../fonts/cmunbmr.woff")  format("woff");
+  font-weight: 400; font-style: normal;
+}
+@font-face {
+  font-family: "CMU Bright Roman";
+  src: url("../../fonts/cmunbbx.woff2") format("woff2"),
+       url("../../fonts/cmunbbx.woff")  format("woff");
+  font-weight: 700; font-style: normal;
+}
+@font-face {
+  font-family: "CMU Typewriter Text";
+  src: url("../../fonts/cmuntt.woff2") format("woff2"),
+       url("../../fonts/cmuntt.woff")  format("woff");
+  font-weight: 400; font-style: normal;
+}
+
+/* ─── VARIABLES ───────────────────────────────────────────────── */
+
+:root {
+  /* Palette — niveaux de gris uniquement */
+  --gray-ink:      #111111;
+  --gray-dark:     #333333;
+  --gray-mid:      #666666;
+  --gray-light:    #AAAAAA;
+  --gray-rule:     #CCCCCC;
+  --gray-bg-code:  #F5F5F5;
+  --gray-surface:  #EBEBEB;
+  --gray-white:    #FFFFFF;
+
+  /* Sémantique */
+  --color-text:            var(--gray-ink);
+  --color-text-secondary:  var(--gray-dark);
+  --color-text-muted:      var(--gray-mid);
+  --color-bg:              var(--gray-white);
+  --color-surface:         var(--gray-surface);
+  --color-border:          var(--gray-rule);
+
+  /* Liens */
+  --link-color:      var(--gray-ink);
+  --link-decoration: underline;
+  --link-hover:      var(--gray-dark);
+
+  /* Polices */
+  --font-serif: "CMU Serif", "Computer Modern", Georgia, serif;
+  --font-sans:  "CMU Bright Roman", "CMU Sans Serif", system-ui, sans-serif;
+  --font-mono:  "CMU Typewriter Text", "Courier New", monospace;
+
+  /* Typographie */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1.0625rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --leading-tight:   1.25;
+  --leading-normal:  1.6;
+  --leading-relaxed: 1.75;
+
+  /* Espacement */
+  --space-1:  4px;  --space-2:  8px;  --space-3:  12px; --space-4:  16px;
+  --space-5:  20px; --space-6:  24px; --space-8:  32px; --space-10: 40px;
+  --space-12: 48px; --space-16: 64px;
+
+  /* Mise en page */
+  --layout-narrow: 600px;
+  --layout-text:   720px;
+
+  /* Boîtes pédagogiques */
+  --box-definition-border: var(--gray-dark);
+  --box-definition-bg:     var(--gray-bg-code);
+  --box-theorem-border:    var(--gray-ink);
+  --box-theorem-bg:        var(--gray-surface);
+  --box-example-border:    var(--gray-light);
+  --box-example-bg:        var(--gray-white);
+  --box-remark-border:     var(--gray-light);
+  --box-remark-bg:         var(--gray-bg-code);
+  --box-warning-border:    var(--gray-ink);
+  --box-warning-bg:        var(--gray-bg-code);
+  --box-correction-border: var(--gray-dark);
+  --box-correction-bg:     var(--gray-surface);
+}
+
+/* ─── RESET ───────────────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+/* ─── CORPS ───────────────────────────────────────────────────── */
+
+body {
+  font-family: var(--font-serif);
+  font-size:   var(--text-base);
+  line-height: var(--leading-normal);
+  color:       var(--color-text);
+  background:  var(--color-bg);
+  max-width:   var(--layout-text);
+  margin:      0 auto;
+  padding:     var(--space-8) var(--space-5) var(--space-16);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── TITRES ──────────────────────────────────────────────────── */
+
+h1 {
+  font-family:   var(--font-serif);
+  font-size:     var(--text-4xl);
+  font-weight:   700;
+  line-height:   var(--leading-tight);
+  text-align:    center;
+  margin-top:    var(--space-12);
+  margin-bottom: var(--space-6);
+}
+
+h2 {
+  font-family:   var(--font-sans);
+  font-size:     var(--text-xl);
+  font-weight:   500;
+  text-align:    center;
+  color:         var(--color-text-secondary);
+  margin-bottom: var(--space-10);
+  margin-top:    0;
+}
+
+/* Ligne décorative sous le sous-titre */
+h1 + h2::before {
+  content:    "";
+  display:    block;
+  width:      60px;
+  height:     1px;
+  background: var(--color-border);
+  margin:     var(--space-5) auto;
+}
+
+h3 {
+  font-family:    var(--font-sans);
+  font-size:      var(--text-2xl);
+  font-weight:    600;
+  margin-top:     var(--space-10);
+  margin-bottom:  var(--space-4);
+  padding-bottom: var(--space-2);
+  border-bottom:  1px solid var(--color-border);
+}
+
+h4 {
+  font-family:   var(--font-sans);
+  font-size:     var(--text-xl);
+  font-weight:   500;
+  margin-top:    var(--space-8);
+  margin-bottom: var(--space-3);
+}
+
+h5, h6 {
+  font-family:   var(--font-sans);
+  font-weight:   500;
+  margin-top:    var(--space-6);
+  margin-bottom: var(--space-2);
+}
+h5 { font-size: var(--text-lg); }
+h6 { font-size: var(--text-base); font-style: italic; }
+
+/* ─── TEXTE ───────────────────────────────────────────────────── */
+
+p  { margin-top: 0; margin-bottom: var(--space-4); }
+a  { color: var(--link-color); text-decoration: var(--link-decoration); }
+a:hover { color: var(--link-hover); }
+strong, b { font-weight: 700; }
+em, i     { font-style: italic; }
+
+code, kbd, samp {
+  font-family:   var(--font-mono);
+  font-size:     0.9em;
+  background:    var(--gray-bg-code);
+  border:        1px solid var(--color-border);
+  border-radius: 2px;
+  padding:       1px 5px;
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size:   var(--text-sm);
+  background:  var(--gray-bg-code);
+  border:      1px solid var(--color-border);
+  border-radius: 4px;
+  padding:     var(--space-4);
+  overflow-x:  auto;
+  line-height: var(--leading-relaxed);
+}
+pre code { background: none; border: none; padding: 0; }
+
+blockquote {
+  border-left: 4px solid var(--color-border);
+  margin:      var(--space-6) 0;
+  padding:     var(--space-3) var(--space-6);
+  color:       var(--color-text-muted);
+  font-style:  italic;
+}
+
+/* ─── LISTES ──────────────────────────────────────────────────── */
+
+ul, ol { padding-left: var(--space-6); margin-bottom: var(--space-4); }
+li     { margin-bottom: var(--space-1); line-height: var(--leading-normal); }
+ol     { list-style-type: lower-alpha; }
+ol ol  { list-style-type: lower-roman; }
+
+/* ─── TABLEAUX ────────────────────────────────────────────────── */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size:       var(--text-sm);
+  margin-bottom:   var(--space-6);
+}
+th {
+  background:  var(--gray-ink);
+  color:       var(--gray-white);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-align:  left;
+  padding:     var(--space-3) var(--space-4);
+  border:      1px solid var(--gray-ink);
+}
+td {
+  padding:        var(--space-3) var(--space-4);
+  border:         1px solid var(--color-border);
+  vertical-align: top;
+}
+tr:nth-child(even) td { background: var(--gray-bg-code); }
+
+/* ─── IMAGES ──────────────────────────────────────────────────── */
+
+img { max-width: 100%; height: auto; display: block; margin: var(--space-4) auto; }
+
+/* ─── EN-TÊTE DE DOCUMENT (généré par Pandoc) ────────────────── */
+
+header { margin-bottom: var(--space-8); }
+
+header .title {
+  font-family:   var(--font-serif);
+  font-size:     var(--text-4xl);
+  font-weight:   700;
+  text-align:    center;
+  margin-bottom: var(--space-4);
+}
+header .subtitle {
+  font-family:   var(--font-sans);
+  font-size:     var(--text-xl);
+  font-weight:   400;
+  text-align:    center;
+  color:         var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+header .author, header .date {
+  font-family: var(--font-sans);
+  font-size:   var(--text-sm);
+  text-align:  center;
+  color:       var(--color-text-muted);
+}
+
+/* ─── BOÎTES PÉDAGOGIQUES ─────────────────────────────────────── */
+
+/* Générées par charte.lua sous forme <div class="box definition"> */
+
+.box {
+  border-left: 4px solid var(--color-border);
+  background:  var(--color-surface);
+  padding:     var(--space-4) var(--space-5);
+  margin:      var(--space-6) 0;
+}
+
+.box-title {
+  font-family:    var(--font-sans);
+  font-weight:    700;
+  font-size:      var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color:          var(--color-text);
+  margin-bottom:  var(--space-3);
+}
+
+.box.definition  { border-left-color: var(--box-definition-border);  background: var(--box-definition-bg);  }
+.box.theorem,
+.box.proposition { border-left-color: var(--box-theorem-border);     background: var(--box-theorem-bg);     }
+.box.example     { border-left: 1px solid var(--box-example-border); background: var(--box-example-bg);     }
+.box.example .box-title { font-weight: 400; font-style: italic; text-transform: none; }
+.box.remark      { border-left: 4px dashed var(--box-remark-border); background: var(--box-remark-bg);      }
+.box.remark .box-title  { font-style: italic; }
+.box.warning     { border-left-color: var(--box-warning-border);     background: var(--box-warning-bg);     }
+.box.warning .box-title { font-style: italic; }
+.box.correction  { border-left-color: var(--box-correction-border);  background: var(--box-correction-bg);  font-style: normal; }
+
+/* ─── SAUTS DE PAGE ───────────────────────────────────────────── */
+
+hr { border: none; border-top: 1px solid var(--color-border); margin: var(--space-8) 0; }
+
+/* ─── PRINT ───────────────────────────────────────────────────── */
+
+@media print {
+  body { max-width: none; padding: 0; font-size: 11pt; }
+  a    { color: inherit; text-decoration: none; }
+  .box { break-inside: avoid; }
+  pre  { white-space: pre-wrap; }
+}

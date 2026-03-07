@@ -1,51 +1,101 @@
-.exercice {
-    position: relative;
+/*
+ * components/exercices.css — Exercices et corrections
+ * Requiert variables.css — Palette niveaux de gris uniquement
+ */
+
+/* ─── BLOC EXERCICE ───────────────────────────────────────────── */
+
+div.exercice {
+  position:      relative;
+  margin-bottom: var(--space-8, 32px);
 }
 
-.question {
-    position: relative;
-}
+.question { position: relative; }
+
+
+/* ─── POINTS ──────────────────────────────────────────────────── */
 
 .points {
-    position: absolute;
-    right: -100px;
-    width: 50px;
-    font-style: italic;
-    text-align: right;
-    padding-right: 20px;
+  position:    absolute;
+  right:       -100px;
+  width:       80px;
+  font-style:  italic;
+  font-family: var(--font-sans, "CMU Bright Roman", sans-serif);
+  font-size:   var(--text-sm, 0.875rem);
+  color:       var(--color-text-muted, #666666);
+  text-align:  right;
+  padding-right: 20px;
 }
 
 .exercice li {
-    margin-bottom: 5px;
-    margin-top: 20px;
+  margin-bottom: var(--space-2, 8px);
+  margin-top:    var(--space-5, 20px);
 }
 
-div.exercice>.points {
-    top: -17px;
-    font-size: 18px;
-    font-weight: bold;
+div.exercice > .points {
+  top:         -17px;
+  font-size:   var(--text-xl, 1.25rem);
+  font-weight: 700;
 }
 
-li.question>.points {
-    bottom: -17px;
-    font-weight: normal;
+li.question > .points {
+  bottom:      -17px;
+  font-weight: normal;
 }
+
+
+/* ─── BLOC CORRECTION ─────────────────────────────────────────── */
 
 div.correction {
-    font-style: italic;
-    border: 1px solid black;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+  border-left:    4px solid var(--box-correction-border, #333333);
+  background:     var(--box-correction-bg, #EBEBEB);
+  padding:        var(--space-4, 16px) var(--space-5, 20px);
+  margin-top:     var(--space-4, 16px);
+  margin-bottom:  var(--space-4, 16px);
+  font-style:     normal;
 }
 
-div.correction ol {
-    list-style-type: decimal;
+div.correction::before {
+  content:        "Correction";
+  display:        block;
+  font-family:    var(--font-sans, "CMU Bright Roman", sans-serif);
+  font-size:      var(--text-xs, 0.75rem);
+  font-weight:    700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color:          var(--color-text-secondary, #333333);
+  margin-bottom:  var(--space-3, 12px);
 }
 
 div.correction p {
-    margin-top:  0px;
-    margin-bottom: 0px;
+  margin-top:    0;
+  margin-bottom: var(--space-2, 8px);
 }
 
+div.correction p:last-child { margin-bottom: 0; }
+
+div.correction ol { list-style-type: decimal; }
+
+
+/* ─── BANDEAU « CORRECTION » ──────────────────────────────────── */
+
+.correction-banner {
+  background:    var(--gray-bg-code, #F5F5F5);
+  border:        1px solid var(--color-border, #CCCCCC);
+  border-left:   4px solid var(--gray-dark, #333333);
+  padding:       var(--space-3, 12px) var(--space-5, 20px);
+  margin-bottom: var(--space-8, 32px);
+  display:       flex;
+  align-items:   center;
+  gap:           var(--space-3, 12px);
+  font-family:   var(--font-sans, "CMU Bright Roman", sans-serif);
+  font-size:     var(--text-sm, 0.875rem);
+  color:         var(--color-text-secondary, #333333);
+  font-weight:   600;
+}
+
+.correction-banner::before {
+  content:    "✓";
+  font-size:  var(--text-xl, 1.25rem);
+  font-weight:700;
+}
