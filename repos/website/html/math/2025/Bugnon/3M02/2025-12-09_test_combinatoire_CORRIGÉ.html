@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+    <head>
+        <title>Test de combinatoire – Corrigé</title>
+        <link rel="stylesheet" href="css/style2.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script>
+        MathJax = {
+          tex: {
+            macros: {
+              ts: ["\\text{'}"]
+            }
+          }
+        };
+        </script>
+        <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+    </head>
+
+    <body>
+
+        <div id="navigation">
+            <ul>
+                <li><a href="/2_Web/index.html">Accueil</a></li>
+                <li><a href="/2_Web/page1html">Mathématiques</a></li>
+                <li><a href="/2_Web/page2.html">Informatique</a></li>
+                <li><a href="/2_Web/page3.html">Math-Info</a></li>
+            </ul>
+        </div>
+
+	<table id="header">
+	  <tr>
+	    <td class="left">Nom, prénom :</td>
+	    <td class="right">9 décembre 2025</td>
+	  </tr>
+	  <tr>
+	    <td class="left">Classe :</td>
+	    <td class="right">3<sup>ème</sup> Année – Mathématiques Standard</td>
+	  </tr>
+	</table>
+
+    <h1>Test de combinatoire – Corrigé</h1>
+
+
+
+    <h2>Exercice 1 – Les boules de Noël</h2>
+</div>
+
+
+<p>
+Stella a 20 boules de Noël, toutes uniques en leur
+genre. Parmi elles, 12 sont argentées et 8 sont dorées. Elle choisit 10 boules pour les
+accrocher sur son sapin.
+</p>
+
+<ol>
+  <li class="question">
+    <p>
+        Combien a-t-elle de possibilités de les choisir en tout ?
+    </p>
+    <div class="correction">
+    On choisit 10 boules parmi 20. Le nombre de combinaisons possibles
+    est donc :
+
+    $$C_{10}^{20} = 184'756.$$
+    </div>
+  </li>
+  <li class="question">Combien a-t-elle de possibilités de les choisir si elle veut 6 boules argentées ?</li>
+
+    <div class="correction">
+        On doit choisir 6 boules argentées parmi les 12, et 4 boules dorées
+        parmi les 8. En appliquant le principe de multiplication, on trouve
+        que le nombre de possibilités est&nbsp;:
+
+        $$ N = C_6^{12} \cdot C_4^8 = 64'680. $$
+    </div>
+  <li class="question">Combien a-t-elle de possibilités si elle veut au moins une boule dorée ?</li>
+
+    <div class="correction">
+        On compte le nombre total de possibilités et on retranche
+        le nombre de possibilités qui n'ont aucune boule dorée :
+    
+        $$ N = C_{10}^{20} - C_{10}^{12} = 184'690. $$
+    </div>
+</ol>
+
+
+
+<div class="exercice">
+    <h2>Exercice 2 – La grande guirlande lumineuse</h2>
+</div>
+
+<p>
+Une guirlande lumineuse a 10 emplacements pour brancher des ampoules colorées.
+On cherche combien il y a de façons d'ordonner les couleurs sur la guirlande.
+</p>
+
+<ol>
+  <li class="question">
+    On dispose d'un nombre illimité d'ampoules rouges, vertes et blanches.
+  <ol>
+    <li class="question">Combien de possibilités en tout y a-t-il de composer la guirlande ?</li>
+
+        <div class="correction">
+            <p>
+                Il s'agit d'un arrangement avec répétitions. Pour chaque
+                emplacement il y a trois possibilités. Il y a donc au
+                total :
+
+                $$ \bar{A}^3_{10} = 3^{10} = 59\ts049 $$
+       
+                possibilités.
+            </p>
+        </div>
+
+    <li class="question">Et si deux ampoules successives ne peuvent pas avoir la même couleur&nbsp;?</li>
+
+        <div class="correction">
+            <p>
+                On utilise le principe de multiplication.
+            </p>
+            <p>
+                Pour le premier emplacement on peut choisir
+                n'importe laquelle des trois couleurs.
+                Pour chaque emplacement qui suit, il n'y a plus que
+                2 choix de couleur, car la couleur précédente
+                ne peut pas être utilisée. 
+            </p>
+            <p>
+                Le nombre total de possibilités est donc :
+
+                $$ N = 3 \cdot 2^9 = 1\ts 536$$
+            </p>
+        </div>
+
+  </ol>
+  </li>
+  <li class="question">Combien y a-t-il de possibilités si on ne dispose que de <strong>6</strong> ampoules rouges, 3 vertes et 2 blanches ?</li>
+
+        <div class="correction">
+            
+            <p>
+                On a 10 emplacements et 11 ampoules, donc une ampoule
+                en trop. On a trois cas :
+            </p>
+
+            <ol>
+                <li>
+                    On enlève une ampoule rouge. Le nombre de possibilités est :
+   
+                    $$ N_1 = \bar{P}_{10}(5, 3, 2) = \frac{10!}{5!3!2!} = 2\ts520. $$
+                </li>
+                <li>
+                    On enlève une ampoule verte. Le nombre de possibilités est :
+
+                    $$ N_2 = \bar{P}_{10}(6, 2, 2) = \frac{10!}{6!2!2!} = 1\ts260. $$
+                </li>
+                <li>
+                    On enlève une ampoule blanche. Le nombre de possibilités est :
+        
+                    $$ N_3 = \bar{P}_{10}(6, 3, 1) = \frac{10!}{6!3!1!} = 840 $$
+                </li>
+            </ol>
+
+            <p>
+                Par le principe d'addition, le nombre total de possibilités
+                est donc :
+
+                $$ N = N_1 + N_2 + N_3 = 4\ts620. $$
+            </p>
+        </div>
+
+
+
+
+
+</ol>
+
+<div class="exercice">
+    <h2>Exercice 3 – La petite guirlande lumineuse</h2>
+    
+
+<p>
+On dispose de 7 ampoules, chacune d'une des couleurs de l'arc-en-ciel.
+Une petite guirlande lumineuse a cinq emplacements pour brancher
+des ampoules colorées.
+On cherche combien de façons il y a d'ordonner 5 ampoules sur la guirlande.
+
+<ol>
+<li>Combien y a-t-il de possibilités en tout ?</li>
+
+<div class="correction">
+    <p>
+        C'est un arrangement de 7 ampoules dans 5 emplacements.
+        Le nombre total de possibilités est :
+
+        $$ A_5^7 = 2\ts520. $$
+    </p>
+</div>
+
+<li>Combien y a-t-il de possibilités si on ne veut ni brancher l'ampoule bleue
+ni brancher  l'ampoule rouge ?</li>
+
+<div class="correction">
+    <p>
+        Il y a 5 ampoules à disposer dans 5 emplacements.
+        Le nombre total de possibilités est donc :        
+
+        $$ P_5 = 120. $$
+    </p>
+</div>
+<li>Combien y a-t-il de possibilités en tout si on ne veut employer ni l'ampoule
+bleue ni la rouge, et si on veut brancher l'ampoule verte à côté de l'ampoule
+jaune ?</li>
+
+<div class="correction">
+    <p>
+        Il y a \(N_1 = 2\) possibilités de mettre l'ampoule
+        verte à côté de l'ampoule jaune.
+    </p>
+    <p>
+        Il y a ensuite \(N_2 = P_4 = 24\) manières de disposer le couple
+        ampoule verte et ampoule jaune et les 3 ampoules restantes.
+    </p>
+    <p>
+        Par le principe de multiplication, il y a donc en tout :
+
+        $$ N_1 \cdot N_2 = 48 $$
+
+        possibilités.
+    </p>
+</div>
+</ol>
+
+</p>
+
+
+
+
+
+    <img class="small" src="images/houx.svg" width="70px">
+
+    </body>
+</html>

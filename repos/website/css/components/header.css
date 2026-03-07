@@ -1,0 +1,19 @@
+
+#header {
+    width: 100%;
+}
+
+#header td {
+    line-height: 1em;
+}
+
+#header td.left {
+    font-style: italic;
+    text-align: left;
+}
+
+#header td.right {
+    font-weight: bold;
+}
+
+

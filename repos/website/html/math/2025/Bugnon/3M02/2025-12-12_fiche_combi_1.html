@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <title>Probabilité – Univers et événements 1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components/fiche.css">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js">
+    </script>
+    <script>
+    MathJax = {
+      tex: {
+        macros: {
+          ts: ["\\text{'}"]
+        }
+      }
+    };
+    </script>
+</head>
+
+<body>
+<article class="fiche">
+
+<h1>Univers de probabilité et événements</h1>
+<h2>Fiche 1</h2>
+
+
+
+<table class="fiche">
+    <thead>
+        <tr>
+            <th scope="col">Expérience aléatoire</th>
+            <th scope="col">Univers</th>
+            <th scope="col">Nombre d'éléments dans \(\Omega\)</th>
+            <th scope="col">Événements</th>
+            <th scope="col">Nombre total d'événements</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <th>Jet d'un dé de six faces</th>
+            <td>\(\Omega = \{1, 2, 3, 4, 5, 6\}\)</td>
+            <td>\(n = 6\)</td>
+            <td>
+                <ul>
+                    <li>L'issue est impaire : \(\{1, 3, 5\}\)</li>
+                    <li>L'issue est inférieure à trois : \(\{1, 2\}\)</li>
+                    <li>
+                        Lister les événements élémentaires : 
+                        \(\{1\}, \{2\}, \{3\}, \{4\}, \{5\}, \{6\} \)
+                    </li>
+                </ul>
+            </td>
+            <td>\(2^6 = 64\)</td>
+        </tr>
+        <tr>
+            <th>Jet d'un dé de quatre faces (tétraèdre)</th>
+            <td>\(\Omega = \{1, 2, 3, 4\}\)</td>
+            <td>\(n = 4\)</td>
+            <td>
+                <ul>
+                    <li>
+                        Lister les événements élémentaires :
+                        \(\{1\}, \{2\}, \{3\}, \{4\} \)
+                    </li>
+                </ul>
+            </td>
+            <td>\(2^4 = 16\)</td>
+        </tr>
+        <tr>
+            <th>Jet d'une pièce</th>
+            <td>\(\Omega = \{P, F\}\)</td>
+            <td>\(n = 2\)</td>
+            <td>
+                <ul>
+                    <li>
+                        Lister tous les événements :
+                        \(\varnothing, \{P\}, \{F\}, \Omega \)
+                    </li>
+                </ul>
+            </td>
+            <td>\(2^2 = 4\)</td>
+        </tr>
+        <tr>
+            <th>Jet de deux pièces</th>
+            <td>\(\Omega = \{PP, PF, FP, FF\}\)</td>
+            <td>\(n = 4\)</td>
+            <td>
+                <ul>
+                    <li>
+                        Lister tous les événements :
+                        \(
+                            \begin{align}
+                                &\varnothing,\{PP\}, \{PF\}, \{FP\}, \{FF\}, \\
+                                &\{PP, PF\}, \{PP, FP\}, \{PP, FF\},
+                                \{PF, FP\}, \{PF, FF\}, \{FP, FF\}, \\
+                                &\{PF, FP, FF\}, 
+                                \{PP, FP, FF\}, 
+                                \{PP, PF, FF\}, 
+                                \{PP, PF, FP\}, \Omega
+                            \end{align}
+                        \)
+                    </li>
+                </ul>
+            </td>
+            <td>\(2^4 = 16\)</td>
+        </tr>
+        <tr>
+            <th>Jet de trois pièces</th>
+            <td>
+                \(
+                    \Omega = \left\{
+                        \begin{array}{l}
+                        PPP, \\
+                        PPF, PFP, FPP, \\
+                        PFF, FPF, FFP, \\
+                        FFF
+                        \end{array}
+                    \right\}
+                \)
+            </td>
+            <td>\(n = 8\)</td>
+            <td></td>
+            <td>\(2^8 = 256\)</td>
+        </tr>
+        <tr>
+            <th>
+                Durée de vie en heure d'un transistor (composant électronique)
+            </th>
+            <td>\(\Omega = \{x | x > 0\}\)</td>
+            <td>\(n = \infty\)</td>
+            <td></td>
+            <td>\(\infty\)</td>
+        </tr>
+        <tr>
+            <th>Tirer une boule</th>
+            <td>\(\Omega = \{1, 2, 3, 4\}\)</td>
+            <td>\(n = 4\)</td>
+            <td></td>
+            <td>\(2^4 = 16\)</td>
+        </tr>
+        <tr>
+            <th>Tirer deux boules successivement sans remise</th>
+            <td>
+                \(\Omega=\left\{
+                        \begin{array}{l}
+                            (1,2),(1,3),(1,4),\\
+                            (2,1),(2,3),(2,4),\\
+                            (3,1),(3,2),(3,4),\\
+                            (4,1),(4,2),(4,3)
+                        \end{array}
+                        \right\}\)
+            </td>
+            <td>\(n = 12\)</td>
+            <td></td>
+            <td>\(2^{12} = 4\ts096\)</td>
+        </tr>
+        <tr>
+            <th>Tirer deux boules successivement avec remise</th>
+            <td>
+                \(\Omega=\left\{
+                        \begin{array}{l}
+                            (1,1),(1,2),(1,3),(1,4),\\
+                            (2,1),(2,2),(2,3),(2,4),\\
+                            (3,1),(3,2),(3,3),(3,4),\\
+                            (4,1),(4,2),(4,3),(4,4)
+                        \end{array}
+                    \right\}\)
+            </td>
+            <td>\(n = 16\)</td>
+            <td></td>
+            <td>\(2^{16} = 65\ts536\)</td>
+        </tr>
+    </tbody>
+
+</table>
+
+
+</article>
+</body>
+
+</html>
+
+

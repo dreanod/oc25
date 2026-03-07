@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Corrigés d'exercices</title>
+    <link rel="stylesheet" href="/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components/diagrams.css">
+    <link rel="stylesheet" href="/css/components/exercices.css">
+    <link rel="stylesheet" href="/css/print.css">
+
+    <style>
+        #omega {
+            left: 275px;
+            top: 20px;
+        }
+        #A {
+            left: 100px;
+            top: 15px;
+        }
+        #B {
+            left: 70px;
+            top: 235px;
+        }
+        #C {
+            left: 160px;
+            top: 235px;
+        }
+        #issue-1 {
+            left: 145px;
+            top: 50px;
+        }
+        #issue-2 {
+            left: 150px;
+            top: 130px;
+        }
+        #issue-3 {
+            left: 190px;
+            top: 130px;
+        }
+        #issue-4 {
+            left: 150px;
+            top: 200px;
+        }
+        #issue-5 {
+            left: 195px;
+            top: 190px;
+        }
+        #issue-6 {
+            left: 140px;
+            top: 180px;
+        }
+    </style>
+
+    <script>
+    MathJax = {
+      tex: {
+        macros: {
+          ts: ["\\text{'}"]
+        }
+      }
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+</head>
+
+<body>
+<article>
+
+<h1 class="title">Corrigés d'exercices</h1>
+<h2 class="subtitle">
+    Premières notions de probabilité,<br> in <em>S. Amaudruz</em> (Chapitre 8)
+</h2>
+
+</div>
+
+<h3>Exercice 8.1</h3>
+
+<p>
+    Une boîte contient 3 jetons&nbsp: un rouge, un vert et un bleu.
+    Écrire l'univers associé à chacune des expériences suivantes&nbsp:
+</p>
+
+<ol>
+  <li class="question">
+    On tire un jeton au hasard de cette boîte.
+    On l’y remet, puis on en tire un second.
+
+    <div class="correction">
+        <p>
+            On note R, V, B les jetons rouge, vert et bleu
+            respectivement. L'univers pour un tirage successif
+            des jetons (l'ordre compte) est&nbsp:
+            $$ \Omega = 
+                \left\{
+                    \begin{array}{l}
+                        RR, RV, RB, \\
+                        VR, VV, VB, \\
+                        BR, BV, BB
+                    \end{array}
+                \right\}.
+            $$
+
+            (On note \(VR\) l'issue où le jeton vert est tiré en
+            premier, puis le jeton rouge.)
+        </p>
+    </div>
+  </li>
+
+  <li class="question">
+    On tire un jeton au hasard de cette boîte.
+    On le garde, puis on en tire un second.
+
+    <div class="correction">
+        On enlève toutes les issues où une couleur se répète&nbsp:
+
+        $$
+            \Omega = 
+                \left\{
+                    \begin{array}{l}
+                           & RV,& RB, \\
+                        VR,&    & VB, \\
+                        BR,& BV &     \\     
+                    \end{array}
+                \right\}.
+        $$
+    </div>
+  </li>
+</ol>
+
+<div class="page-break"></div>
+
+<h3>Exercice 8.2</h3>
+
+<p>
+   On jette une pièce de monnaie trois fois de suite et l'on s'intéresse
+   au côté où elle se présente.
+</p>
+
+<ol>
+  <li class="question">
+    Écrire l'univers associé à cette expérience dans le cas où l'ordre
+    d'apparition des côtés a une importance, puis écrire l'événement&nbsp;:
+
+    $$E = \text{"pile apparaît au moins deux fois"}.$$
+
+    <div class="correction">
+        On ordonne les issues par nombre de piles&nbsp:
+
+        $$
+            \Omega =
+                \left\{
+                    \begin{array}{l}
+                        PPP, \\
+                        PPF, PFP, FPP, \\
+                        PFF, FPF, FFP, \\
+                        FFF
+                    \end{array}
+                \right\}.
+        $$
+
+        L'événement \(E\) est le sous-ensemble de \(\Omega\) où
+        pile apparaît 2 ou 3 fois&nbsp;:
+
+        $$
+            E =
+                \left\{
+                    \begin{array}{l}
+                        PPP, \\
+                        PPF, PFP, FPP
+                    \end{array}
+                \right\}.
+        $$
+                    
+    </div>
+  </li>
+  <li class="question">
+    Même question dans le cas où l'ordre d'apparition des côtés n'a pas
+    d'importance.
+
+    <div class="correction">
+        <p>
+            On utilise la notation ensembliste avec les accolades
+            pour signifier que l'ordre n'a pas d'importance.
+        </p>
+        <p>
+            On ordonne par nombre de piles&nbsp;:
+            
+            $$
+                \Omega = \Big\{
+                    \{P, P, P\},
+                    \{P, P, F\},
+                    \{P, F, F\},
+                    \{F, F, F\}
+                \Big\}.
+            $$
+        </p>
+        <p>
+            (Il faut bien noter que&nbsp;:
+            \(\{P, P, F\} = \{P, F, P\} = \{F, P, P\}\).)
+           
+        </p>
+        <p>
+            L'événement devient alors&nbsp;:
+
+            $$
+                E = \Big\{
+                    \{P, P, P\},
+                    \{P, P, F\}
+                \Big\}.
+            $$
+        </p>
+    </div>
+</li>
+
+<li class="question">
+    Combien d'issues l'univers sous a) contient-il
+    si on jette la pièce quatre fois au lieu de trois&nbsp;?
+    Et si on jette la pièce \(n\) fois&nbsp;?
+
+    <div class="correction">
+        <p>
+            Pour compter le nombre d'issues possibles,
+            on utilise la formule d'arrangement avec répétition.
+            On a 2 éléments qui se répètent (pile et face)
+            et 4 positions (résultat du premier jet, du deuxième,
+            etc.).
+        </p>
+        <p>
+            Il y a donc&nbsp;:
+
+            $$
+                \bar{A}_4^2 = 2^4 = 16
+            $$
+            
+            issues possibles dans l'univers.
+        </p>
+        <p>
+            On généralise la formule dans le cas où on a
+            \(n\) jets&nbsp;:
+            $$
+                \bar{A}_n^2 = 2^n.
+            $$
+    </div>
+</li>
+
+
+</ol>
+
+<div class="page-break"></div>
+
+<h3>Exercice 8.3</h3>
+
+<p>
+    On se rend à un match de football pour soutenir notre équipe
+    fétiche et on s'intéresse aux différentes issues possibles de la
+    partie&nbsp;: notre équipe gagne (G), effectue un match nul (N)
+    ou perd (P). Préciser l'univers de cette expérience, puis
+    déterminer la liste de ses événements.
+</p>
+
+<div class="correction">
+    Les différentes issues du match sont G, N, et P.
+    On note donc l'univers&nbsp;:
+        
+        $$ \Omega = \{G, N, P\}. $$
+
+    On liste les événements en ordonnant selon
+    le  nombre d'issues qu'ils contiennent&nbsp;:
+        
+        $$
+            \left\{
+                \begin{array}{l}
+                    \varnothing, \\
+                    \{G\}, \{N\}, \{P\}, \\
+                    \{G, N\}, \{G, P\}, \{N, P\}, \\
+                    \Omega
+                \end{array}
+            \right.
+        $$
+</div>
+
+<div class="page-break"></div>
+
+<h3>Exercice 8.4</h3>
+
+<p>
+    On lance un dé. On considère l'événement 
+    \(A = \text{"obtenir un nombre plus petit que 4"}\),
+    \(B = \text{"obtenir un nombre pair"}\) et
+    \(C = \text{"obtenir un nombre plus grand que 1"}\).
+<p>
+
+<ol>
+  <li class="question">
+    Écrire les événements \(A\), \(B\), \(C\), \(\bar{A}\), \(A \cup C,\)
+    et \(A \cap B\).
+
+    <div class="correction">
+        <div class="diagram">
+            <div class="annotation" id="omega">\(\Omega\)</div>
+            <div class="annotation" id="A">\(A\): plus petit que 4</div>
+            <div class="annotation" id="B">\(B\): pair</div>
+            <div class="annotation" id="C">\(C\): plus grand que 1</div>
+            <div class="annotation" id="issue-1">\(1\)</div>
+            <div class="annotation" id="issue-2">\(2\)</div>
+            <div class="annotation" id="issue-3">\(3\)</div>
+            <div class="annotation" id="issue-4">\(4\)</div>
+            <div class="annotation" id="issue-5">\(5\)</div>
+            <div class="annotation" id="issue-6">\(6\)</div>
+<svg width="82.020828mm" height="71.70208mm" viewBox="0 0 82.020828 71.70208" version="1.1" id="svg1" inkscape:version="1.4.2 (ebf0e940, 2025-05-08)" sodipodi:docname="diagramme_de_venn_3.svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"> <sodipodi:namedview id="namedview1" pagecolor="#ffffff" bordercolor="#000000" borderopacity="0.25" inkscape:showpageshadow="2" inkscape:pageopacity="0.0" inkscape:pagecheckerboard="0" inkscape:deskcolor="#d1d1d1" inkscape:document-units="mm" inkscape:zoom="1.1802422" inkscape:cx="152.08742" inkscape:cy="157.17113" inkscape:window-width="1328" inkscape:window-height="858" inkscape:window-x="0" inkscape:window-y="38" inkscape:window-maximized="0" inkscape:current-layer="layer1" /> <defs id="defs1" /> <g inkscape:label="Ebene 1" inkscape:groupmode="layer" id="layer1" transform="translate(-18.653122,-81.623957)"> <circle style="fill:#000000;fill-opacity:0.184739;stroke:#000000;stroke-width:0.254459;stroke-opacity:1" id="path1" cx="49.951141" cy="126.05744" r="17.913507" /> <circle style="fill:#000000;fill-opacity:0.184739;stroke:#000000;stroke-width:0.254459;stroke-opacity:1" id="path1-3" cx="67.528839" cy="126.05744" r="17.913507" /> <circle style="fill:#000000;fill-opacity:0.184739;stroke:#000000;stroke-width:0.254459;stroke-opacity:1" id="path1-3-4" cx="58.73999" cy="109.30643" r="17.913507" /> <rect style="fill:none;fill-opacity:0.184739;stroke:#000000;stroke-width:0.254459;stroke-opacity:1" id="rect1" width="78.627892" height="68.703987" x="20.349592" y="83.123009" /> </g> </svg>
+        </div>
+        <ul>
+            <li>\(A = \{1, 2, 3\}\)</li>
+            <li>\(B = \{2, 4, 6\}\)</li>
+            <li>\(C = \{2, 3, 4, 5, 6\}\)</li>
+            <li>\(\overline{A} = \{4, 5, 6\}\)</li>
+            <li>\(A \cup C = \{1, 2, 3\} \cup \{2, 3, 4, 5, 6\} = \Omega\)</li>
+            <li>\(A \cap B = \{1, 2, 3\} \cap \{2, 4, 6\} = \{ 2 \}\)</li>
+        </ul>
+    </div>
+  </li>
+
+  <li class="question">
+    Les événements \(\overline{A \cup B}\) et \(\overline{A \cap B}\)
+    sont-ils incompatibles&nbsp;?
+
+    <div class="correction">
+        <p>
+            On calcule&nbsp;:
+            $$
+                \begin{aligned}
+                    \overline{A \cup B} & = \overline{\{1,2,3\} \cup \{2,4,6\}} \\
+                                        & = \overline{\{1,2,3,4,6\}} \\
+                                        & = \{5\},
+                \end{aligned}
+            $$
+        
+            et&nbsp;:
+
+            $$
+                \begin{aligned}
+                    \overline{A\cap B} & = \overline{\{1,2,3\} \cap \{2,4,6\}} \\
+                                       & = \overline{\{2\}} \\
+                                       & = \{1,3,4,5,6\}.
+                \end{aligned}
+            $$
+        
+            D'où&nbsp;:
+
+            $$
+                \overline{A\cup B} \cap \overline{A\cap B} = \{5\} \neq  \varnothing .
+            $$
+
+            Donc les événements \(\overline{A\cup B}\) et \(\overline{A\cap B}\) ne sont pas
+            incompatibles.
+        </p>
+    </div>
+  </li>
+
+  <li class="question">
+    Combien y-a-t'il d'événements associés à l'expérience
+    qui consiste à jeter un dé&nbsp;?
+
+    <div class="correction">
+        Il y a \(n = 6\) issues possibles dans l'univers associé au jet
+        du dé. Donc il y a \(2^6 = 64\) événements associés.
+    </div>
+  </li>
+
+  <li class="question">
+    Parmi tous les événements associés à l'expérience consistant à jeter
+    un dé, combien sont incompatibles avec l'événement \(A\)&nbsp;?
+
+    <div class="correction">
+        <p>
+            On doit compter tous les sous-ensembles de \(\Omega\) qui
+            ne contiennent aucun élément de \(A\), c'est-à-dire
+            ni 1, ni 2, ni 3.
+        </p>
+        <p>
+            Donc on doit compter tous les sous-ensembles de l'ensemble
+            \(\{4, 5, 6\}\) qui contient 3 éléments. Il y a donc \(2^3 = 8\)
+            événements qui sont incompatibles avec \(A\).
+    </div>
+  </li>
+</ol>
+
+<div class="page-break"></div>
+
+<h3>Exercice 8.5</h3>
+
+<p>
+    Trois boules sont tirées d'une urne contenant des boules
+    blanches et des boules rouges.
+    On considère les événements&nbsp;:
+
+    $$
+        \begin{aligned}
+            A & = \text{"la première boule est blanche"}, \\
+            B & = \text{"la deuxième boule est blanche"}, \\
+            C & = \text{"la troisième boule est blanche"}.
+        \end{aligned}
+    $$
+</p>
+<p>
+    Exprimer les événements suivants en terme de \(A\),
+    \(B\), et \(C\)&nbsp;:
+
+    $$
+        \begin{aligned}
+            D & = \text{"toutes les boules sont blanches"}, \\
+            E & = \text{"les deux premières boules sont blanches"}, \\
+            F & = \text{"au moins une boule est blanche"}, \\
+            G & = \text{"seulement la troisième boule est blanche"}, \\
+            H & = \text{"exactement une boule est blanche"}.
+        \end{aligned}
+    $$
+</p>
+        
+<div class="correction">
+    <p>
+        $$
+            \begin{aligned}
+            D & = \text{"Boule 1 blanche" ET "Boule 2 blanche" ET "Boule 3 blanche"} \\
+              & = A \cap B \cap C \\
+            \\
+            E & = \text{"Boule 1 blanche" ET "Boule 2 blanche"} \\
+              & = A \cap B\\
+            \\
+            F & = \text{"Boule 1 blanche" OU "Boule 2 blanche" OU "Boule 3 blanche"} \\
+              & = A \cup B \cup C \\
+            \\
+            G & = \text{"Boule 1 PAS blanche" ET "Boule 2 PAS blanche" ET "Boule 3 blanche"} \\
+              & = \overline{A} \cup \overline{B} \cup C \\
+            \\
+            F & = \text{"seulement la première boule est blanche"} \\
+              & \text{OU "seulement la deuxième boule est blanche"} \\
+              & \text{OU "seulement la troisième boule est blanche"} \\
+            \\
+            & = (\text{"Boule 1 blanche" ET "Boule 2 PAS blanche" ET "Boule 3 PAS blanche"}) \\
+            & \text{OU ("Boule 1 PAS blanche" ET "Boule 2 blanche" ET "Boule 3 PAS blanche")} \\
+            & \text{OU ("Boule 1 PAS blanche" ET "Boule 2 PAS blanche" ET "Boule 3 blanche")} \\
+            \\
+            & = (A \cap \overline{B} \cap \overline{C}) \cup (\overline{A} \cap B \cup \overline{C}) \cup (\overline{A} \cup \overline{B} \cup C)
+            \end{aligned}
+        $$
+    </p>
+</div>
+
+</article>
+</body>
+</html>
+

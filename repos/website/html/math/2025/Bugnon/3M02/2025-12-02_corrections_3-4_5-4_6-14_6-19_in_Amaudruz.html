@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Correction d'exercice</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+    <link rel="stylesheet" href="css/style_correction.css">
+</head>
+
+<body>
+
+
+<ol class="en-tete">
+    <li>Cours de combinatoire</li>
+    <li>Gymnase du Bugnon – 3M02</li>
+    <li>02.12.2025</li>
+</ol>
+
+
+<h1>Corrigé des exercices 3.4, 5.4, 6.14, et 6.19</h1>
+
+<h2>Exercice 3.4</h2>
+
+<h3>Énoncé</h3>
+
+<p class="enonce">
+    On place au hasard les douze tomes d'une encyclopédie sur un rayon
+    de bibliothèque.
+
+    <ol class="questions">
+        <li>Combien de classements existent-ils ?</li>
+        <li>
+            Parmi ces classements, combien y en a-t-il où les tomes 1 et 2
+            se trouvent côte à côte, dans cet ordre ?
+        </li>
+        <li>
+            Parmi ces classements, combien y en a-t-il où les tomes 1 et 2
+            se trouvent côte à côte ?
+        </li>
+    </ol>
+
+
+    
+    <h3>Solution</h3>        
+
+    <ol class="solution">
+
+    <li>
+    
+    Il y a \(n=12\) éléments à ordonner (chaque tome de l'encyclopédie).
+    On les prend tous et on les ordonne (1<sup>ère</sup> position, 2<sup>ème</sup>,
+    etc.). Il s'agit donc d'une permutation, et le nombre total
+    de possibilités de classer les tomes est donc :
+
+    $$N = P_{12} = 12! = 479'001'600$$
+
+            <div class="cqfd">\(\square\)</div>
+    </li>
+    <li>
+
+    On considère que les tomes 1 et 2 forment maintenant un seul élément à l'instar
+    des 10 tomes restants. C'est donc comme s'il y avait maintenant
+    \(n = 11\) éléments à placer : les tomes 3 à 12, ainsi que le regroupement
+    du tome 1 et du tome 2, dans cet ordre. Il s'agit donc d'une permutation
+    de 11 éléments et le nombre de possibilités de classement est donc :
+
+    $$N = P_n = P_{11} = 11! = 39'916'800.$$
+
+            <div class="cqfd">\(\square\)</div>
+
+    </li>
+    <li>
+
+        <p>
+            Il s'agit d'un problème de permutation avec groupement, où
+            les tomes 1 et 2 forment un groupe à placer avec d'autres
+            éléments que l'on ordonne.
+        </p>
+
+        <p>
+            On procède en trois étapes.
+        </p>
+
+        <p>
+            <strong>Étape 1 :</strong>
+            On compte le nombre de manières de permuter les éléments
+            à l'intérieur du groupe "tome 1 et tome 2". Il s'agit d'une
+            permutation de deux éléments, donc le nombre de possibilités
+            est :
+
+            $$N_1 = P_2 = 2! = 2$$
+        </p>
+        <p>
+            <strong>Étape 2:</strong>
+            On ordonne le groupe avec les autres éléments, comme s'il
+            s'agissait d'un élément comme les autres. Dans notre cas il
+            y a :
+    
+            $$N_2 = P_{11} = 11! = 39'916'800$$
+
+            permutations possibles.
+        </p>
+            <strong>Étape 3:</strong>
+            On conclut avec le principe de multiplication :
+        <p>
+            Pour chacune des \(N_1\) manières d'ordonner les éléments à
+            l'intérieur du groupe, il y a \(N_2\) manières d'ordonner
+            le groupe parmi les autres tomes. Il y a donc en tout :
+
+            $$N = N_1 \cdot N_2 = 2 \cdot 39'916'800 = 79'833'600$$
+
+            manières d'ordonner les tomes. 
+            <div class="cqfd">\(\square\)</div>
+        </p>
+    </li>
+
+    </ol>
+</p>
+
+<hr>
+
+<h2>Exercice 5.4</h2>
+
+<h3>Énoncé</h3>
+
+<ol>
+<li>
+    De combien de façons peut-on choisir un bouquet de 7 fleurs parmi 12 ?
+</li>
+<li>
+    Les 12 fleurs se répartissent en 8 roses et 4 gerberas. De combien de
+    façons peut-on composer un bouquet de 7 fleurs, si l'on veut :
+
+    <ol>
+        <li>
+            4 roses et 3 gerberas ?
+        </li>
+        <li>
+            au moins 1 gerbera ?
+        </li>
+    </ol>
+</li>
+</ol>
+
+<h3>Solution</h3>
+
+<ol>
+    <li>
+       Il s'agit ici de choisir \(p = 7\) objets (fleurs) parmi \(n = 12\),
+       sans ordre particulier.  On a donc :
+        
+        $$N = C^n_p = C^{12}_7 = 792$$
+
+        choix possibles.<br>
+            <div class="cqfd">\(\square\)</div>
+    </li>
+
+    <li>
+    <ol>
+        <li>
+            <p><strong>Étape 1 : </strong>
+            On choisit 4 roses parmi les 8. Le nombre de possibilités
+            de les choisir est donc :
+
+            $$N_{rose} = C_4^8 = 70$$</p>
+
+            <p><strong>Étape 2 : </strong>
+            On choisit 3 gerberas parmi les 4. Le nombre de possiblités
+            de les choisir est donc :
+
+            $$N_{gerbera} = C_3^4 = 4$$</p>
+
+            <p><strong>Étape 3 : </strong>
+            Pour chacune des \(N_{rose}\) façons de choisir les roses,
+            il y a \(N_{gerbera}\) façons de choisir les gerberas pour
+            composer le bouquet. Le nombre total de manières de composer
+            le bouquet est donc :
+
+            $$N = N_{rose} \cdot N_{gerbera} = 70 \cdot 4 = 280.$$
+
+            <div class="cqfd">\(\square\)</div>
+            <p>
+        </li>
+
+        <li>
+            <p>On utilise la méthode du complément.</p>
+
+            <p><strong>Étape 1 :</strong>
+            On calcule le nombre total de bouquets possibles, avec
+            ou sans gerbera (on reprend le résultat du a)) :
+            
+            $$N_{1} = 792$$</p>
+
+            <p><strong>Étape 2 : </strong>
+            On calcule le nombre \(N_2\) total de bouquets possibles,
+            <em>sans aucun</em> gerbera. Il s'agit de compter
+            le nombre de manières possibles de choisir 7 fleurs parmi les 8 roses :
+
+            $$N_2 = C^8_7 = 8$$            
+
+
+            <p><strong>Étape 3 : </strong>
+            On obtient le nombre \(N\) total de bouquets avec 
+            <em>au moins un</em> gerbera en retranchant le
+            nombre \(N_2\) de bouquets <em>sans</em> gerbera
+            du nombre total \(N_1\) de bouquets avec ou sans
+            gerbera. Il y a donc :
+
+            $$N = N_1 - N_2 = 792 - 8 = 784$$
+
+            bouquets possibles. 
+            <div class="cqfd">\(\square\)</div>
+        </li>
+    </ol>
+    </li>
+</ol>
+
+<hr>
+
+<h2>Exercice 6.14</h2>
+
+<h3>Énoncé</h3>
+
+<p>
+De combien de manières peut-on asseoir 8 personnes en rang si :
+<ol>
+<li>aucune restriction n’est mise,</li>
+<li>les personnes A et B veulent être ensemble,</li>
+<li>les hommes ne doivent avoir que des voisines et inversement, en supposant qu’il y a
+4 hommes et 4 femmes,</li>
+<li>les hommes, qui sont 5, doivent rester ensemble,</li>
+<li>les personnes forment 4 couples et chaque couple doit rester réuni.</li>
+</ol>
+</p>
+
+<h3>Solution</h3>
+
+<ol>
+
+<li>
+    <p>
+        Si aucune restriction n'est mise, alors il s'agit de compter
+        le nombre de manières possibles d'assoir 8 personnes sur 8 places
+        differentes. Il s'agit donc d'une permutation de
+        \(n = 8\) éléments. Le nombre total de manières des les ordonner
+        est donc :
+    </p>
+
+    $$N = P_n = P_8 = 8! = 40'320$$
+            <div class="cqfd">\(\square\)</div>
+</li>
+
+
+<li>
+    <p>
+        Si les personnes A et B veulent être ensemble, elle vont
+        former un groupe à l'intérieur des 8 personnes.
+        On procède en 3 étapes :
+    </p>
+
+    <p>
+        <strong>Étape 1 :</strong>
+        On compte le nombre de manières d'ordonner le groupe
+        formé par A et B. Il s'agit d'un permutation de
+        2 éléments. Il y a donc \(N_1 = P_2 = 2! = 2\) possibilités.
+    </p>
+
+    <p>
+        <strong>Étape 2 :</strong>
+        On compte le nombre de manières d'ordonner les 6 autres
+        personnes ainsi que le groupe formé par A et B
+        <em>comme s'il s'agissait d'un septième objet à placer</em>.
+    </p>
+
+    <p>
+        Il s'agit donc d'une permutation de sept objets (6 personnes
+        et un groupe). Il y a donc :
+
+        $$N_2 = P_7 = 7! = 5'040$$
+
+        possibilités.
+    </p>
+
+    <p>
+        <strong>Étape 3 :</strong>
+        Pour chacune des \(N_1\) manières de disposer le groupe formé
+        par A et B, il y a \(N_2\) manières d'ordonner ensuite le groupe
+        et les 6 personnes. Par le principe de multiplication, il y a donc :
+
+        $$N = N_1 \cdot N_2 = P_2 \cdot P_7 = 10'080$$
+
+        manières de placer les 8 personnes.
+            <div class="cqfd">\(\square\)</div>
+    </p>
+</li>
+
+<li>
+    <p>
+        On numérote les places de 1 à 8. On a deux cas possibles :
+        1) les hommes sont assis aux places impaires et les femmes
+        aux places paires, ou 2) les femmes sont assises aux
+        places impaires et les hommes aux places paires.
+    </p>
+
+    <p>
+        <strong>Cas 1 :</strong>
+        On doit placer quatre hommes dans les quatre places impaires (1, 3, 5 et 7).
+        Il y a donc \(P_4 = 4! = 24\) manières de les placer.
+        De même il y a \(P_4 = 24\) manières de placer les 4 femmes
+        dans les quatre places paires.
+    </p>
+    <p>
+        Par le principe de multiplication, il y a donc :
+
+        $$N_1 = P_4 \cdot P_4 = 24^2 = 576$$
+
+        manières de placer les hommes et les femmes dans le cas 1.
+    </p>
+    <p>
+        <strong>Cas 2 :</strong> 
+        De manière similaire au cas 1, on démontre qu'il y a :
+
+        $$N_2 = P_4 \cdot P_4 = 576$$
+
+        manières de placer les hommes et les femmes si ces dernières
+        occupent les places impaires.
+    </p>
+    <p>
+        <strong>Synthèse :</strong>
+        Par le principe d'addition, on a que le nombre total
+        de possibilités de placer les 4 hommes et les 4
+        femmes, s'ils s'alternent, est :
+
+        $$N = N_1 + N_2 = 576 + 576 = 1152.$$
+            <div class="cqfd">\(\square\)</div>
+    </p>
+</li>
+
+<li>
+    <p>
+        On a un groupe de 5 hommes qui doivent rester ensemble, et le groupe
+        doit être ensuite placé parmi les 3 femmes. On procède en trois
+        étapes :
+    </p>
+    <p>
+        <strong>Étape 1 :</strong>
+        On ordonne les hommes entre eux. Le nombre de manières de le faire
+        est :
+        
+        $$N_1 = P_5 = 5! = 120.$$
+    </p>
+    <p>
+        <strong>Étape 2 :</strong>
+        On ordonne les 3 femmes et le groupe des hommes déjà ordonné.
+        Il s'agit donc d'ordonner 4 éléments (3 femmes et le groupe d'hommes).
+        Le nombre de manières de le faire est donc :
+        
+        $$N_2 = P_4 = 4! = 24$$
+
+    </p>
+    <p>
+        On conclut avec le principe de multiplication que le nombre
+        total manières de placer les 5 hommes et les 3 femmes est :
+
+        $$N = N_1 \cdot N_2 = 120 \cdot 24 = 2880.$$
+            <div class="cqfd">\(\square\)</div>
+    </p>
+</li>
+
+<li>
+
+    <p>
+        On a quatre couples (groupes), et pour chacun, il faut ordonner 
+        les deux personnes. Puis il faut ordonner les couples entre eux.
+        Autrement dit, pour chaque couple, on décide qui des deux personnes
+         s'assoit en
+        premier et qui s'assoit en deuxième. Puis on décide quel couple 
+        vient en premier, lequel vient en deuxième et ainsi de suite.
+    <p>
+    <p>
+        <strong>Étape 1 :</strong>
+        On ordonne séparement chaque couple. Il y a \(P_2 = 2! = 2\)
+        manières de le faire pour chaque couple.
+    </p>
+    <p>
+        Par le principe de multiplication il y a donc :
+        
+        $$N_1 = (P_2)^4 = 2^4 = 16$$
+
+        manières de décider de l'ordre à l'intérieur de chacun des 4 couples.
+    </p>
+    <p>
+        On prend les couples ordonnés et on les place.
+        Il y a 4 couples, donc il y a :
+
+        $$N_2  = P_4 = 4! = 24$$
+
+        Manières d'ordonner les couples (sans tenir compte de l'ordre
+        à l'intérieur de chaque couple).
+    </p>
+    <p>
+        <strong>Étape 3 :</strong>
+        Pour chacune des \(N_1\) manières d'ordonner à l'intérieur de chaque
+        couple, il y a ensuite \(N_2\) manières d'ordonner les
+        couples entre eux.
+    </p>
+    <p>
+        Par le principe de multiplication, il y donc au total :
+   
+        $$N = N_1 \cdot N_2 = 16 \cdot 24 = 384$$
+
+        manières de placer les 8 personnes.
+            <div class="cqfd">\(\square\)</div>
+    </p>
+</li>
+</li>
+</ol>
+
+<hr>
+
+
+<h2>Exercice 6.19</h2>
+
+<h3>Énoncé</h3>
+
+<ol>
+    <li>Un étudiant doit résoudre 8 problèmes sur 10 lors d’une épreuve écrite.
+        Combien de choix peut-il faire ?</li>
+    <li>Même question en supposant de plus qu’il doive obligatoirement résoudre :</li>
+    <ol>
+        <li>les 3 premiers problèmes,</li>
+        <li>4 au moins des 5 premiers problèmes.</li>
+    </ol>
+</ol>
+
+<h3>Solution</h3>
+
+<ol>
+<li>
+    <p>
+        Il s'agit de choisir \(p = 8\) éléments parmi \(n = 10\),
+        sans ordre particulier. Il s'agit donc d'un problème de combinaison,
+        où il y a :
+
+        $$C_8^{10} = 45$$
+        
+        choix possibles.
+            <div class="cqfd">\(\square\)</div>
+    </p>
+</li>
+<li>
+    <ol>
+        <li>
+            S'il doit obligatoirement résoudre les 3 premiers problèmes,
+            alors il ne lui reste plus qu'à choisir 5 autres problèmes
+            à résoudre parmi les \(10 - 3 = 7\) restants. Il a donc :
+
+            $$C_5^7 = 21$$ 
+            choix possibles.    
+            <div class="cqfd">\(\square\)</div>
+        </li>
+        <li>
+            <p>
+            Il y a deux cas possibles : 1) il résout seulement 4
+            des cinq premiers problèmes, ou 2) il les résout tous les
+            cinq.
+            </p>
+
+            <p>
+            <strong>Cas 1 : </strong>
+            L'étudiant à \(C_4^5 = 5\) possibilités de choisir les
+            quatre problèmes qu'il va résoudre parmi les 5 premiers.
+            </p>
+            <p>
+            Puis il doit encore résoudre 4 autre problèmes parmi
+            les cinq derniers problèmes pour pouvoir résoudre 8
+            problèmes en tout. Il a donc \(C_4^5 = 5\) possibilité
+            de choisir les choisir.
+            </p>
+            <p>
+            Par le principe de multiplication, il a donc au total :
+
+            $$ N_1 = C_4^5 \cdot C_4^5 = 5^2 = 25 $$
+            
+            choix possibles.
+            </p>
+            <p>
+            <strong>Cas 2 : </strong>
+            L'étudiant doit résoudre les 5 premiers problèmes. Il ne lui
+            reste donc plus qu'à choisir 3 autres à résoudre parmi les 5
+            derniers problèmes. Il y a donc :
+
+            $$N_2 = C_3^5 = 10$$
+
+            choix possibles.
+            </p>
+            <p>
+            <strong>Synthèse :</strong>
+            Par le principe d'addition, il y a donc au total :
+
+            $$N = N_1 + N_2 = 25 + 10 = 35$$
+
+            manières de choisir les problèmes.
+            <div class="cqfd">\(\square\)</div>
+            </p>
+        </li>
+    </ol>
+</li>
+</ol>
+
+</body>
+
+
+</html>
+
+
+
+

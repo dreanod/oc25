@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Probelektion Lebermatt 2026</title>
+    <link rel="stylesheet" href="/fonts/fonts.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/components/diagrams.css">
+    <link rel="stylesheet" href="/css/components/exercices.css">
+    <link rel="stylesheet" href="/css/components/tables.css">
+    <link rel="stylesheet" href="/css/components/d3.css">
+    <link rel="stylesheet" href="/css/print.css">
+
+    <script>
+    MathJax = {
+      tex: {
+        macros: {
+          ts: ["\\text{'}"]
+        }
+      }
+    };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js"></script>
+</head>
+
+<body>
+<article>
+
+<h1 class="title">
+    Lineare Funktion und Exponentialfunktion bei Wachstumsprozessen vergleichen
+</h1>
+
+<h2 class="subtitle">
+    Probelektion – Denis Dreano
+</h2>
+
+<h2 class="subtitle">
+    21.01.2026 – Gymnasium Lerbermatt
+</h2>
+
+<div class="page-break"></div>
+
+<h3>Lernziele</h3>
+
+<ul>
+    <li>Lineare und exponentielle Wachstumsprozesse erkennen.</li>
+    <li>Ein Wachstumsprozess mithilfe einer linearen oder einer exponentiellen Funktion modellieren.</li>
+    <li>Lineare und exponentielle Wachstumsprozesse grafisch darstellen.</li>
+    <li>Erklären, wie lineare und exponentielle Prozesse verlaufen.</li>
+    <li>Lineare und exponentielle Wachstumsprozesse vergleichen und interpretieren.</li>
+</ul>
+
+
+<h3>Lektionsplannung</h3>
+
+<table>
+    <tr>
+        <td>Dauer</td>
+        <td>Zeit</td>
+        <td>Inhalt</td>
+    </tr>
+    <tr>
+        <td>2 min</td>
+        <td>10:05 – 10:07</td>
+        <td>
+            <strong>Begrüssung</strong>:
+            <ul>
+                <li>Organisatorisches Setup</li>
+                <li>Vorstellung des Gastlehrers</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>3 min</td>
+        <td>10:07 – 10:10</td>
+        <td>
+            <strong>Einstieg</strong>
+            <ul>
+                <li>Einführung in das Unterrichtsthema</li>
+                <li>Kurze Wiederholung der theoretischen Grundlagen</li>
+                <li>Vorstellung der beiden Fallstudien (Wikipedia und Schachspiel)</li>
+                <li>Einteilung der Klasse in vier Arbeitsgruppen</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>15 min</td>
+        <td>10:10 – 10:25</td>
+        <td>
+            <strong>Gruppenarbeit</strong>
+            <ul>
+                <li>
+                    Zwei Gruppen arbeiten an der Wikipedia-Fallstudie
+                    und zwei an der Schachspiel-Fallstudie.
+                </li>
+                <li>
+                    Die Gruppen sollen die
+                    Wachstumsprozesse identifizieren, modellieren,
+                    grafisch darstellen und vergleichen.
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>20 min</td>
+        <td>10:25 – 10:45</td>
+        <td>
+            <strong>Präsentation und Veränkerung des Konzepts</strong>
+            <ul>
+                <li>
+                    Jede Gruppe kommt nach vorne und erläutert ihre
+                    Ergebnisse. Jede Person präsentiert
+                    einen Teil der Ergebnisse.
+                </li>
+                <li>
+                    Ich formalisiere und instutionalisiere die Ergebnisse und
+                    zeige Gemeinsamkeiten zwischen den beiden Fallstudien.
+                </li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>2 min</td>
+        <td>10:45 – 10:50</td>
+        <td>
+            <strong>Zusammenfassung und Abschluss</strong>
+            <ul>
+                <li>Zusammenfassung der zentralen Ergebnisse</li>
+                <li>Verabschiedung</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td>–</td>
+        <td>–</td>
+        <td>
+            <strong>Bonus</strong>
+            <ul>
+                <li>
+                    Ich beschreibe kurz einige Wachstumsprozesse.
+                </li>
+                <li>
+                    Die Schülerinnen und Schüler sollen die Prozesse
+                    zu zweit diskutieren und entscheiden, ob der
+                    jeweilige Prozess
+                    linear oder exponentiell ist.
+                </li>
+                <li>
+                    Anschliessend führen wir eine Klassendiskussion.
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
+
+<div class="page-break"></div>
+
+<h3>Fallstudie 1: Wikipedia</h3>
+
+<h4>Beschreibung</h4>
+
+<p>
+    Im Jahr 2001 wurde Wikipedia gegründet und umfasste zu Beginn
+    rund 100 Artikel. Zum Vergleich enthielt die
+    gedruckte Enzyklopädie <em>Encyclopedia Britannica</em>
+    etwa 65'000 Artikel. Wir betrachten das Wachstum beider
+    Enzyklopädien zwischen 2001 und 2007.
+</p>
+
+<p>
+    Wir nehmen an, dass die Anzahl der Artikel auf Wikipedia jedes Jahr
+    um 325% zunimmt. Andererseits werden 2'600 neue Artikel jährlich von
+    der <em>Encyclopedia Britannica</em> veröffentlicht.
+</p>
+
+<h4>Aufgabe</h4>
+    
+<ol class="exercice">
+    <li>Wikipedia</li>
+    <ol>
+        <li>
+            Berechnen Sie die Artikel auf Wikipedia am Ende des Jahres 2002 bis
+            2007 und tragen Sie diese in die Wertetabelle ein.
+        </li>
+        <li>
+            Mit welchem Faktor wird die Anzahl der Artikel von 2001 auf 2002
+            multipliziert?  Geben Sie auch den Faktor von 2002 auf 2003, von
+            2001 auf 2003 und von 2003 auf 2005 an.
+        </li>
+        <li>
+            Handelt es sich um lineares oder exponentielles Wachstum? Begründen Sie.
+        </li>
+        <li>
+            Geben Sie eine Funktion \(f_\text{Wiki}(x)\) an, die das Wachstum 
+            von Wikipedia beschreibt. 
+         </li>
+    </ol>
+            
+    <li>Encyclopedia Britannica</li>
+
+    <ol>
+        <li>Wie viele Artikel gibt es in der <em>Encyclopedia Britannica</em> am Ende
+            des Jahres 2002?
+            2003? 2004?</li>
+        <li>Um wie viele Artikel nimmt die Enzyklopädie von
+            2001 auf 2002 zu? Von 2002 auf 2003? Von 2001 auf 2003?
+            Von 2003 auf 2005?</li>
+        <li>
+            Handelt es sich um lineares oder exponentielles Wachstum? Begründen Sie.
+        </li>
+        <li>
+            Geben Sie eine Funktion \(f_\text{Brit}(x)\) an, die das Wachstum der
+            <em>Encyclopedia Britannica</em> beschreibt. 
+        </li>
+    </ol>
+
+    <li>Vergleich</li>
+
+    <ol>
+        <li>
+            Stellen Sie beide Funktionen \(f_\text{Wiki}(x)\) und
+            \(f_\text{Brit}\) grafisch im untenstehenden leeren Koordinatensystem dar.
+        </li>
+        <li>Wann war Wikipedia halb so gross wie die <em>Encyclopedia Britannica</em>? 
+            Wann gleich gross? Und wann doppelt so gross?</li>
+    </ol>
+</ol>
+
+
+<div class="page-break"></div>
+
+<h4>Wertetabelle</h4>
+
+<table class="value">
+    <tr>
+        <td>\(x \)</td>
+        <td>2001</td>
+        <td>2002</td>
+        <td>2003</td>
+        <td>2004</td>
+        <td>2005</td>
+        <td>2006</td>
+        <td>2007</td>
+    </tr>
+    <tr>
+        <td>\(f_{\text{Wiki}}(x)\)</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>\(f_{\text{Brit}}(x)\)</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+<h4>Graph</h4>
+
+<svg class="d3" id="chart1" width="600" height="500"></svg>
+
+<div class="page-break"></div>
+
+<h3>Fallstudie 2: Die Erfindung des Schachspiels</h3>
+
+<h4>Beschreibung</h4>
+
+<p>
+    Laut der Legende wurde das Schachspiel von dem Weisen Sissa ben Dahir erfunden.
+    Der König von Indien war von dem Spiel so begeistert,
+    dass er Sissa die beträchtliche Summe von 100 Survana (circa 1 kg Gold)
+    für jedes Feld auf dem Schachbrett versprach. Zu dieser Zeit konnte man mit
+    100 Survana etwa 10 Tonnen Reis kaufen.
+</p>
+
+<p>
+    Sissa lehnte ab und machte dem König einen Gegenvorschlag. Er wolle nur
+    ein Reiskorn für das erste Feld, zwei Reiskörner für das zweite, dann vier,
+    acht, sechzehn usw. Der König akzeptierte den Gegenvorschlag.
+</p>
+
+<h4>Aufgabe</h4>
+
+<ol class="exercice">
+    <li>Der Vorschlag des Königs</li>
+    <ol>
+        <li>
+            Wie viel Gold gibt der König für die ersten 2 Felder aus?
+            Wie viel für die ersten 3, für die ersten 10, für die ersten 20 und
+            wie viel insgesamt?
+        </li>
+        <li>
+            Wie stark nimmt die Goldmenge von Feld 1 zu Feld 2 zu?
+            Wie viel von Feld 5 zu Feld 6, wie viel von 40 zu 41 und wie viel
+            von 40 zu 45?
+        </li>
+        <li>
+            Ist das Wachstum linear oder exponentiell? Begründen Sie?
+        </li>
+        <li>
+            Geben Sie eine Funktion \(g_\text{König}(x)\), die das
+            Wachstum der Goldmenge darstellt.
+        </li>
+        <li>
+            Formulieren Sie eine weitere Funktion \(f_\text{König}(x)\), die
+            die entsprechende Reismenge (in Tonnen) darstellt.
+        </li>
+    </ol>
+            
+    <li>Sissas Gegenvorschlag</li>
+
+    <ol>
+        <li>
+            Wie viele Reiskörner erhält Sissa auf dem Feld 1?
+            Wie viele auf den Feldern 2, 3, 4, 10, 20, resp. 64?
+        </li>
+        <li> 
+            Wie verändert sich die Anzahl der Reiskörner von Feld 5 zu Feld 6?
+            Wie verändert sie sich von Feld 40 zu Feld 41, resp. von Feld 40 zu Feld 45?
+        </li>
+        <li>
+            Ist das Wachstum linear oder exponentiell? Begründen Sie.
+        </li>
+        <li>
+            Geben Sie eine Funktion \(g_\text{Sissa}(x)\), die das
+            Wachstum der Anzahl der Reiskörner darstellt.
+        </li>
+        <li>
+            Geben Sie eine weitere Funktion \(f_\text{Sissa}(x)\), die
+            die entsprechende Reismenge in Tonnen darstellt.<br>
+            <em>Hinweis:</em> Ein Reiskorn wiegt ungefähr 25 mg. 
+        </li>
+        <li>
+            Vergleichen Sie die Reismenge auf Feld 64 (in Tonnen) mit
+            der heutigen weltweiten Reisproduktion?<br>
+            <em>Hinweis</em>: Die heutige Reisproduktion
+            beträgt ungefähr 500 Millionen Tonnen.
+        </li>
+    </ol>
+
+    <li>Vergleich</li>
+
+    <ol>
+        <li>
+            Füllen Sie die unten stehende Wertetabelle 
+            für die Funktionen \(f_\text{König}\) und 
+            \(f_\text{Sissa}\).
+        </li>
+        <li>
+            Stellen Sie beide Funktionen \(f_\text{König}\) und 
+            \(f_\text{Sissa}\) grafisch im untenstehenden
+            leeren Koordinatensystems dar.
+        </li>
+        <li>
+            Für welche Feldnummer \(x\) gilt: 
+            \(f_\text{König}(x) = f_\text{Sissa}(x)\)?
+            Und für welche gilt \(f_\text{König}(x) = 2\cdot f_\text{Sissa}(x)\)?
+            Und für welche gilt \(f_\text{König}(x) = \frac{1}{2}\cdot f_\text{Sissa}(x)\)?
+        </li>
+    </ol>
+</ol>
+
+<div class="page-break"></div>
+
+
+<h4>Wertetabelle</h4>
+
+<table class="value">
+    <tr>
+        <td>x</td>
+        <td>38</td>
+        <td>39</td>
+        <td>40</td>
+        <td>41</td>
+        <td>42</td>
+        <td>43</td>
+        <td>44</td>
+    </tr>
+    <tr>
+        <td>\(f_{\text{König}}(x)\)</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>\(f_{\text{Sissa}}(x)\)</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
+
+<h4>Graph</h4>
+
+<svg class="d3" id="chart2" width="600" height="500"></svg>
+
+
+<div class="page-break"></div>
+
+
+<h4>Bonusfragen</h4>
+
+<strong>Exponentielles oder lineares Wachstum?</strong>
+
+<ol>
+    <li>Jeden Tag steigt die Zellzahl einer Bakterienkolonie um 50%.</li>
+    <li>Jeden Monat spare ich 50 Franken.</li>
+    <li>Ich habe 100 Franken auf einem Bankkonto. Der Zinssatz beträgt 2% pro Jahr</li>
+    <li>Ich habe 2 Eltern und 4 Grosseltern. Wie viele Vorfahren habe ich in Generation\(n\)?</li>
+    <li>In einem Land hat jede Frau durchschnittlich 3 Kinder. Wie wächst die Bevölkerung?</li>
+    <li>Jedes Jahr wächst ein Bambus um 2 m in die Höhe.</li>
+</ol>
+
+
+
+</article>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script>
+
+build_axis = function(svg) {
+    const width = +svg.attr("width");
+    const height = +svg.attr("height");
+
+    const margin = { top: 20, right: 20, bottom: 40, left: 50 };
+    const innerWidth = width - margin.left - margin.right;
+    const innerHeight = height - margin.top - margin.bottom;
+
+    const g = svg.append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+
+    // Scales (set any domains you like)
+    const x = d3.scaleLinear().domain([0, 70]).range([0, innerWidth]);
+    const y = d3.scaleLinear().domain([0, 70]).range([innerHeight, 0]);
+
+    // Major grids
+    const xMajorGrid = d3.axisBottom(x)
+      .ticks(7)
+      .tickSize(-innerHeight)
+      .tickFormat("");
+
+    const yMajorGrid = d3.axisLeft(y)
+      .ticks(7)
+      .tickSize(-innerWidth)
+      .tickFormat("");
+
+    // Minor grid 
+    const xMinorGrid = d3.axisBottom(x)
+      .ticks(70)
+      .tickSize(-innerHeight)
+      .tickFormat("");
+
+    const yMinorGrid = d3.axisLeft(y)
+      .ticks(70)
+      .tickSize(-innerWidth)
+      .tickFormat("");
+
+    // Draw grids
+    g.append("g")
+      .attr("class", "grid minor")
+      .attr("transform", `translate(0,${innerHeight})`)
+      .call(xMinorGrid);
+
+    g.append("g")
+      .attr("class", "grid minor")
+      .call(yMinorGrid);
+
+    g.append("g")
+      .attr("class", "grid major")
+      .attr("transform", `translate(0,${innerHeight})`)
+      .call(xMajorGrid);
+
+    g.append("g")
+      .attr("class", "grid major")
+      .call(yMajorGrid);
+
+    // Axes
+    const xAxis = d3.axisBottom(x)
+      .tickFormat("");
+
+    const yAxis = d3.axisLeft(y)
+      .tickFormat("");
+
+    g.append("g")
+      .attr("transform", `translate(0,${innerHeight})`)
+      .call(xAxis);
+
+    g.append("g")
+      .call(yAxis);
+}
+
+build_axis(d3.select("#chart1"));
+build_axis(d3.select("#chart2"));
+</script>
+
+</body>
